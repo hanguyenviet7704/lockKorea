@@ -1,5 +1,5 @@
 server:
-  port: 8089
+  port: ${PORT:8089}
 spring:
   datasource:
     url: jdbc:mysql://crossover.proxy.rlwy.net:45963/railway?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
