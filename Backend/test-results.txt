@@ -1,0 +1,58 @@
+Warning: JAVA_HOME environment variable is not set.
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ------------------------< com.example:Sneakers >------------------------
+[INFO] Building Sneakers 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ Sneakers ---
+[INFO] Copying 1 resource from src/main/resources to target/classes
+[INFO] Copying 5 resources from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ Sneakers ---
+[INFO] Changes detected - recompiling the module! :source
+[INFO] Compiling 191 source files with javac [debug release 17] to target/classes
+[INFO] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/main/java/com/example/Sneakers/services/GhnService.java: Some input files use unchecked or unsafe operations.
+[INFO] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/main/java/com/example/Sneakers/services/GhnService.java: Recompile with -Xlint:unchecked for details.
+[INFO] -------------------------------------------------------------
+[WARNING] COMPILATION WARNING : 
+[INFO] -------------------------------------------------------------
+[WARNING] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/main/java/com/example/Sneakers/dtos/StripePaymentRequestDTO.java:[21,20] @Builder will ignore the initializing expression entirely. If you want the initializing expression to serve as default, add @Builder.Default. If it is not supposed to be settable during building, make the field final.
+[WARNING] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/main/java/com/example/Sneakers/dtos/VoucherDTO.java:[53,21] @Builder will ignore the initializing expression entirely. If you want the initializing expression to serve as default, add @Builder.Default. If it is not supposed to be settable during building, make the field final.
+[WARNING] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/main/java/com/example/Sneakers/models/LockFeature.java:[26,21] @Builder will ignore the initializing expression entirely. If you want the initializing expression to serve as default, add @Builder.Default. If it is not supposed to be settable during building, make the field final.
+[WARNING] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/main/java/com/example/Sneakers/models/Voucher.java:[52,21] @Builder will ignore the initializing expression entirely. If you want the initializing expression to serve as default, add @Builder.Default. If it is not supposed to be settable during building, make the field final.
+[WARNING] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/main/java/com/example/Sneakers/responses/ProductResponse.java:[40,32] @Builder will ignore the initializing expression entirely. If you want the initializing expression to serve as default, add @Builder.Default. If it is not supposed to be settable during building, make the field final.
+[WARNING] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/main/java/com/example/Sneakers/responses/ProductResponse.java:[42,35] @Builder will ignore the initializing expression entirely. If you want the initializing expression to serve as default, add @Builder.Default. If it is not supposed to be settable during building, make the field final.
+[WARNING] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/main/java/com/example/Sneakers/models/Review.java:[8,1] Generating equals/hashCode implementation but without a call to superclass, even though this class does not extend java.lang.Object. If this is intentional, add '@EqualsAndHashCode(callSuper=false)' to your type.
+[WARNING] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/main/java/com/example/Sneakers/models/ProductFeature.java:[8,1] Generating equals/hashCode implementation but without a call to superclass, even though this class does not extend java.lang.Object. If this is intentional, add '@EqualsAndHashCode(callSuper=false)' to your type.
+[WARNING] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/main/java/com/example/Sneakers/models/LockFeature.java:[8,1] Generating equals/hashCode implementation but without a call to superclass, even though this class does not extend java.lang.Object. If this is intentional, add '@EqualsAndHashCode(callSuper=false)' to your type.
+[WARNING] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/main/java/com/example/Sneakers/models/User.java:[19,1] Generating equals/hashCode implementation but without a call to superclass, even though this class does not extend java.lang.Object. If this is intentional, add '@EqualsAndHashCode(callSuper=false)' to your type.
+[INFO] 10 warnings 
+[INFO] -------------------------------------------------------------
+[INFO] -------------------------------------------------------------
+[ERROR] COMPILATION ERROR : 
+[INFO] -------------------------------------------------------------
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/main/java/com/example/Sneakers/responses/OrderResponse.java:[127,32] cannot find symbol
+  symbol:   class ArrayList
+  location: class com.example.Sneakers.responses.OrderResponse
+[INFO] 1 error
+[INFO] -------------------------------------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  6.737 s
+[INFO] Finished at: 2026-04-20T14:20:47+07:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.11.0:compile (default-compile) on project Sneakers: Compilation failure
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/main/java/com/example/Sneakers/responses/OrderResponse.java:[127,32] cannot find symbol
+[ERROR]   symbol:   class ArrayList
+[ERROR]   location: class com.example.Sneakers.responses.OrderResponse
+[ERROR] 
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException

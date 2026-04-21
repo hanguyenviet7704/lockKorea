@@ -1,0 +1,64 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: password
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+  sql:
+    init:
+      mode: always
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+  messages:
+    basename: i18n/messages
+    encoding: UTF-8
+    default-locate: en
+
+logging:
+  level:
+    org.springframework.test: INFO
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+
+# Disable external services for integration tests
+ai:
+  enabled: false
+
+stripe:
+  api:
+    secret-key: sk_test_xxx
+    publishable-key: pk_test_xxx
+
+payment:
+  vnpay:
+    tmnCode: "TEST"
+    hashSecret: "TEST"
+    url: "http://localhost:8089/api/v1/vnpay/test"
+    returnUrl: "http://localhost:8089/api/v1/vnpay/test-callback"
+
+ghn:
+  api:
+    token: "test-token"
+    shop-id: "198428"
+    url: "http://localhost:8089/api/v1/ghn/test"
+    from-district-id: 3440
+    from-ward-code: "13006"
+
+facebook:
+  page-id: "test"
+  access-token: "test"
+
+# Test data SQL initialization
+app:
+  test:
+    initialize-data: true

@@ -8,6 +8,7 @@ import lombok.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -122,14 +123,19 @@ public class OrderResponse {
     }
 
     public static OrderResponse fromOrder(Order order) {
-        List<OrderDetailResponse> orderDetailResponses = order.getOrderDetails()
-                .stream()
+        List<OrderDetail> orderDetails = order.getOrderDetails();
+        if (orderDetails == null) {
+            orderDetails = new java.util.ArrayList<>();
+        }
+
+        List<OrderDetailResponse> orderDetailResponses = orderDetails.stream()
+                .filter(od -> od.getProduct() != null)
                 .map(OrderDetailResponse::fromOrderDetail)
                 .collect(Collectors.toList());
 
-        OrderResponse orderResponse = OrderResponse.builder()
+        OrderResponse.OrderResponseBuilder builder = OrderResponse.builder()
                 .id(order.getId())
-                .userId(order.getUser().getId())
+                .userId(order.getUser() != null ? order.getUser().getId() : null)
                 .fullname(order.getFullName())
                 .phoneNumber(order.getPhoneNumber())
                 .email(order.getEmail())
@@ -149,8 +155,7 @@ public class OrderResponse {
                 .wardCode(order.getWardCode())
                 .paymentIntentId(order.getPaymentIntentId())
                 .vnpTxnRef(order.getVnpTxnRef())
-                .vnpTransactionNo(order.getVnpTransactionNo())
-                .build();
+                .vnpTransactionNo(order.getVnpTransactionNo());
 
         // Map voucher information if present
         if (order.getVoucher() != null) {
@@ -159,7 +164,7 @@ public class OrderResponse {
                     .name(order.getVoucher().getName())
                     .discountPercentage(order.getVoucher().getDiscountPercentage())
                     .build();
-            orderResponse.setVoucher(voucherInfo);
+            builder.voucher(voucherInfo);
         }
 
         // Map assigned staff information if present
@@ -169,16 +174,20 @@ public class OrderResponse {
                     .fullname(order.getAssignedStaff().getFullName())
                     .phoneNumber(order.getAssignedStaff().getPhoneNumber())
                     .build();
-            orderResponse.setAssignedStaff(staffInfo);
+            builder.assignedStaff(staffInfo);
         }
 
-        if (order.getOrderDetails() != null && !order.getOrderDetails().isEmpty()) {
-            String productNames = order.getOrderDetails().stream()
+        OrderResponse orderResponse = builder.build();
+
+        // Set product name and total products if orderDetails not empty
+        if (!orderDetails.isEmpty()) {
+            String productNames = orderDetails.stream()
+                    .filter(od -> od.getProduct() != null)
                     .map(od -> od.getProduct().getName())
                     .collect(Collectors.joining(", "));
             orderResponse.setProductName(productNames);
 
-            long totalProducts = order.getOrderDetails().stream()
+            long totalProducts = orderDetails.stream()
                     .mapToLong(OrderDetail::getNumberOfProducts)
                     .sum();
             orderResponse.setTotalProducts((int) totalProducts);

@@ -1,0 +1,514 @@
+Warning: JAVA_HOME environment variable is not set.
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ------------------------< com.example:Sneakers >------------------------
+[INFO] Building Sneakers 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ Sneakers ---
+[INFO] Copying 1 resource from src/main/resources to target/classes
+[INFO] Copying 5 resources from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ Sneakers ---
+[INFO] Changes detected - recompiling the module! :source
+[INFO] Compiling 191 source files with javac [debug release 17] to target/classes
+[WARNING] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/main/java/com/example/Sneakers/dtos/VoucherDTO.java:[53,21] @Builder will ignore the initializing expression entirely. If you want the initializing expression to serve as default, add @Builder.Default. If it is not supposed to be settable during building, make the field final.
+[WARNING] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/main/java/com/example/Sneakers/models/Voucher.java:[52,21] @Builder will ignore the initializing expression entirely. If you want the initializing expression to serve as default, add @Builder.Default. If it is not supposed to be settable during building, make the field final.
+[WARNING] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/main/java/com/example/Sneakers/models/LockFeature.java:[26,21] @Builder will ignore the initializing expression entirely. If you want the initializing expression to serve as default, add @Builder.Default. If it is not supposed to be settable during building, make the field final.
+[WARNING] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/main/java/com/example/Sneakers/responses/ProductResponse.java:[40,32] @Builder will ignore the initializing expression entirely. If you want the initializing expression to serve as default, add @Builder.Default. If it is not supposed to be settable during building, make the field final.
+[WARNING] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/main/java/com/example/Sneakers/responses/ProductResponse.java:[42,35] @Builder will ignore the initializing expression entirely. If you want the initializing expression to serve as default, add @Builder.Default. If it is not supposed to be settable during building, make the field final.
+[WARNING] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/main/java/com/example/Sneakers/dtos/StripePaymentRequestDTO.java:[21,20] @Builder will ignore the initializing expression entirely. If you want the initializing expression to serve as default, add @Builder.Default. If it is not supposed to be settable during building, make the field final.
+[WARNING] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/main/java/com/example/Sneakers/models/User.java:[19,1] Generating equals/hashCode implementation but without a call to superclass, even though this class does not extend java.lang.Object. If this is intentional, add '@EqualsAndHashCode(callSuper=false)' to your type.
+[WARNING] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/main/java/com/example/Sneakers/models/Review.java:[8,1] Generating equals/hashCode implementation but without a call to superclass, even though this class does not extend java.lang.Object. If this is intentional, add '@EqualsAndHashCode(callSuper=false)' to your type.
+[WARNING] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/main/java/com/example/Sneakers/models/ProductFeature.java:[8,1] Generating equals/hashCode implementation but without a call to superclass, even though this class does not extend java.lang.Object. If this is intentional, add '@EqualsAndHashCode(callSuper=false)' to your type.
+[WARNING] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/main/java/com/example/Sneakers/models/LockFeature.java:[8,1] Generating equals/hashCode implementation but without a call to superclass, even though this class does not extend java.lang.Object. If this is intentional, add '@EqualsAndHashCode(callSuper=false)' to your type.
+[INFO] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/main/java/com/example/Sneakers/services/GhnService.java: Some input files use unchecked or unsafe operations.
+[INFO] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/main/java/com/example/Sneakers/services/GhnService.java: Recompile with -Xlint:unchecked for details.
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ Sneakers ---
+[INFO] Copying 1 resource from src/test/resources to target/test-classes
+[INFO] 
+[INFO] --- compiler:3.11.0:testCompile (default-testCompile) @ Sneakers ---
+[INFO] Changes detected - recompiling the module! :dependency
+[INFO] Compiling 13 source files with javac [debug release 17] to target/test-classes
+[INFO] Some messages have been simplified; recompile with -Xdiags:verbose to get full output
+[INFO] -------------------------------------------------------------
+[ERROR] COMPILATION ERROR : 
+[INFO] -------------------------------------------------------------
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/ProductServiceTest.java:[226,94] incompatible types: org.springframework.data.domain.Pageable cannot be converted to org.springframework.data.domain.PageRequest
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/ProductServiceTest.java:[269,94] incompatible types: org.springframework.data.domain.Pageable cannot be converted to org.springframework.data.domain.PageRequest
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/ProductServiceTest.java:[607,17] no suitable method found for thenReturn(java.util.List<java.lang.Object>)
+    method org.mockito.stubbing.OngoingStubbing.thenReturn(java.util.List<java.lang.Object[]>) is not applicable
+      (argument mismatch; inference variable T has incompatible bounds
+          equality constraints: java.lang.Object[]
+          lower bounds: java.lang.Object)
+    method org.mockito.stubbing.OngoingStubbing.thenReturn(java.util.List<java.lang.Object[]>,java.util.List<java.lang.Object[]>...) is not applicable
+      (argument mismatch; inference variable T has incompatible bounds
+          equality constraints: java.lang.Object[]
+          lower bounds: java.lang.Object)
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/ProductServiceTest.java:[638,17] no suitable method found for thenReturn(java.util.List<java.lang.Object>)
+    method org.mockito.stubbing.OngoingStubbing.thenReturn(java.util.List<java.lang.Object[]>) is not applicable
+      (argument mismatch; inference variable T has incompatible bounds
+          equality constraints: java.lang.Object[]
+          lower bounds: java.lang.Object)
+    method org.mockito.stubbing.OngoingStubbing.thenReturn(java.util.List<java.lang.Object[]>,java.util.List<java.lang.Object[]>...) is not applicable
+      (argument mismatch; inference variable T has incompatible bounds
+          equality constraints: java.lang.Object[]
+          lower bounds: java.lang.Object)
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/components/LocalizationUtilsTest.java:[105,42] cannot find symbol
+  symbol:   method getCurrentLocale()
+  location: variable localizationUtils of type com.example.Sneakers.components.LocalizationUtils
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/components/LocalizationUtilsTest.java:[125,26] cannot find symbol
+  symbol:   method setLocale(java.util.Locale)
+  location: variable localizationUtils of type com.example.Sneakers.components.LocalizationUtils
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/BannerServiceTest.java:[44,17] cannot find symbol
+  symbol:   method linkUrl(java.lang.String)
+  location: class com.example.Sneakers.models.Banner.BannerBuilder
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/BannerServiceTest.java:[52,18] cannot find symbol
+  symbol:   method setLinkUrl(java.lang.String)
+  location: variable bannerDTO of type com.example.Sneakers.dtos.BannerDTO
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/BannerServiceTest.java:[54,18] cannot find symbol
+  symbol:   method setActive(boolean)
+  location: variable bannerDTO of type com.example.Sneakers.dtos.BannerDTO
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/BannerServiceTest.java:[72,51] incompatible types: com.example.Sneakers.dtos.BannerDTO cannot be converted to com.example.Sneakers.models.Banner
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/BannerServiceTest.java:[78,38] cannot find symbol
+  symbol:   method getLinkUrl()
+  location: variable result of type com.example.Sneakers.models.Banner
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/BannerServiceTest.java:[80,26] cannot find symbol
+  symbol:   method getActive()
+  location: variable result of type com.example.Sneakers.models.Banner
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/BannerServiceTest.java:[100,30] cannot find symbol
+  symbol:   method findByActiveTrueOrderByDisplayOrderAsc()
+  location: variable bannerRepository of type com.example.Sneakers.repositories.BannerRepository
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/BannerServiceTest.java:[103,58] incompatible types: java.util.List<com.example.Sneakers.dtos.BannerDTO> cannot be converted to java.util.List<com.example.Sneakers.models.Banner>
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/BannerServiceTest.java:[124,52] incompatible types: com.example.Sneakers.dtos.BannerDTO cannot be converted to com.example.Sneakers.models.Banner
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/BannerServiceTest.java:[145,17] cannot find symbol
+  symbol:   method active(boolean)
+  location: class com.example.Sneakers.models.Banner.BannerBuilder
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/BannerServiceTest.java:[151,18] cannot find symbol
+  symbol:   method setLinkUrl(java.lang.String)
+  location: variable updateDTO of type com.example.Sneakers.dtos.BannerDTO
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/BannerServiceTest.java:[153,18] cannot find symbol
+  symbol:   method setActive(boolean)
+  location: variable updateDTO of type com.example.Sneakers.dtos.BannerDTO
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/BannerServiceTest.java:[159,51] incompatible types: com.example.Sneakers.dtos.BannerDTO cannot be converted to com.example.Sneakers.models.Banner
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/BannerServiceTest.java:[164,41] cannot find symbol
+  symbol:   method getLinkUrl()
+  location: variable result of type com.example.Sneakers.models.Banner
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/BannerServiceTest.java:[166,26] cannot find symbol
+  symbol:   method getActive()
+  location: variable result of type com.example.Sneakers.models.Banner
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/BannerServiceTest.java:[195,49] cannot find symbol
+  symbol:   method active(boolean)
+  location: class com.example.Sneakers.models.Banner.BannerBuilder
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/BannerServiceTest.java:[196,49] cannot find symbol
+  symbol:   method active(boolean)
+  location: class com.example.Sneakers.models.Banner.BannerBuilder
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/BannerServiceTest.java:[197,50] cannot find symbol
+  symbol:   method active(boolean)
+  location: class com.example.Sneakers.models.Banner.BannerBuilder
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/BannerServiceTest.java:[199,30] cannot find symbol
+  symbol:   method findByActiveTrue()
+  location: variable bannerRepository of type com.example.Sneakers.repositories.BannerRepository
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/BannerServiceTest.java:[202,44] cannot find symbol
+  symbol:   method getActiveBanners()
+  location: variable bannerService of type com.example.Sneakers.services.BannerService
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/BannerServiceTest.java:[206,45] invalid method reference
+  cannot find symbol
+    symbol:   method getActive(T)
+    location: class com.example.Sneakers.models.Banner
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/OrderServiceTest.java:[117,37] incompatible types: long cannot be converted to java.lang.Integer
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/OrderServiceTest.java:[171,54] cannot find symbol
+  symbol:   method getStatus()
+  location: variable response of type com.example.Sneakers.responses.OrderIdResponse
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/OrderServiceTest.java:[227,9] reference to assertEquals is ambiguous
+  both method assertEquals(java.lang.Long,long) in org.junit.jupiter.api.Assertions and method assertEquals(long,long) in org.junit.jupiter.api.Assertions match
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/OrderServiceTest.java:[326,51] no suitable method found for thenReturn(java.lang.String)
+    method org.mockito.stubbing.OngoingStubbing.thenReturn(java.util.Map<java.lang.String,java.lang.Object>) is not applicable
+      (argument mismatch; java.lang.String cannot be converted to java.util.Map<java.lang.String,java.lang.Object>)
+    method org.mockito.stubbing.OngoingStubbing.thenReturn(java.util.Map<java.lang.String,java.lang.Object>,java.util.Map<java.lang.String,java.lang.Object>...) is not applicable
+      (argument mismatch; java.lang.String cannot be converted to java.util.Map<java.lang.String,java.lang.Object>)
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/OrderServiceTest.java:[465,26] cannot find symbol
+  symbol:   method isActive()
+  location: variable order of type com.example.Sneakers.models.Order
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/OrderServiceTest.java:[585,39] cannot find symbol
+  symbol:   variable SHIPPING
+  location: class com.example.Sneakers.models.OrderStatus
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/OrderServiceTest.java:[628,9] cannot find symbol
+  symbol:   class DashboardStatsDTO
+  location: class com.example.Sneakers.services.OrderServiceTest
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/OrderServiceTest.java:[771,51] no suitable method found for thenReturn(java.lang.String)
+    method org.mockito.stubbing.OngoingStubbing.thenReturn(java.util.Map<java.lang.String,java.lang.Object>) is not applicable
+      (argument mismatch; java.lang.String cannot be converted to java.util.Map<java.lang.String,java.lang.Object>)
+    method org.mockito.stubbing.OngoingStubbing.thenReturn(java.util.Map<java.lang.String,java.lang.Object>,java.util.Map<java.lang.String,java.lang.Object>...) is not applicable
+      (argument mismatch; java.lang.String cannot be converted to java.util.Map<java.lang.String,java.lang.Object>)
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/OrderServiceTest.java:[818,37] incompatible types: long cannot be converted to java.lang.Integer
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/OrderServiceTest.java:[857,37] incompatible types: long cannot be converted to java.lang.Integer
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/OrderServiceTest.java:[926,58] cannot find symbol
+  symbol:   method getStatus()
+  location: variable response of type com.example.Sneakers.responses.OrderIdResponse
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/VoucherServiceTest.java:[67,37] incompatible types: long cannot be converted to java.lang.Integer
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/VoucherServiceTest.java:[81,42] incompatible types: long cannot be converted to java.lang.Integer
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/VoucherServiceTest.java:[84,32] incompatible types: long cannot be converted to java.lang.Integer
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/VoucherServiceTest.java:[122,9] reference to assertEquals is ambiguous
+  both method assertEquals(java.lang.Long,long) in org.junit.jupiter.api.Assertions and method assertEquals(long,long) in org.junit.jupiter.api.Assertions match
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/VoucherServiceTest.java:[124,9] reference to assertEquals is ambiguous
+  both method assertEquals(java.lang.Long,long) in org.junit.jupiter.api.Assertions and method assertEquals(long,long) in org.junit.jupiter.api.Assertions match
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/VoucherServiceTest.java:[125,9] reference to assertEquals is ambiguous
+  both method assertEquals(java.lang.Long,long) in org.junit.jupiter.api.Assertions and method assertEquals(long,long) in org.junit.jupiter.api.Assertions match
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/VoucherServiceTest.java:[214,9] reference to assertEquals is ambiguous
+  both method assertEquals(java.lang.Long,long) in org.junit.jupiter.api.Assertions and method assertEquals(long,long) in org.junit.jupiter.api.Assertions match
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/VoucherServiceTest.java:[225,9] cannot find symbol
+  symbol:   class Pageable
+  location: class com.example.Sneakers.services.VoucherServiceTest
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/VoucherServiceTest.java:[247,9] cannot find symbol
+  symbol:   class Pageable
+  location: class com.example.Sneakers.services.VoucherServiceTest
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/VoucherServiceTest.java:[277,37] incompatible types: long cannot be converted to java.lang.Integer
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/VoucherServiceTest.java:[297,9] reference to assertEquals is ambiguous
+  both method assertEquals(java.lang.Long,long) in org.junit.jupiter.api.Assertions and method assertEquals(long,long) in org.junit.jupiter.api.Assertions match
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/VoucherServiceTest.java:[318,37] incompatible types: long cannot be converted to java.lang.Integer
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/VoucherServiceTest.java:[418,9] reference to assertEquals is ambiguous
+  both method assertEquals(java.lang.Long,long) in org.junit.jupiter.api.Assertions and method assertEquals(long,long) in org.junit.jupiter.api.Assertions match
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/VoucherServiceTest.java:[422,9] reference to assertEquals is ambiguous
+  both method assertEquals(java.lang.Long,long) in org.junit.jupiter.api.Assertions and method assertEquals(long,long) in org.junit.jupiter.api.Assertions match
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/VoucherServiceTest.java:[442,36] incompatible types: long cannot be converted to java.lang.Integer
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/VoucherServiceTest.java:[469,37] incompatible types: long cannot be converted to java.lang.Integer
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/VoucherServiceTest.java:[482,41] incompatible types: long cannot be converted to java.lang.Integer
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/VoucherServiceTest.java:[484,31] incompatible types: long cannot be converted to java.lang.Integer
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/VoucherServiceTest.java:[499,9] reference to assertEquals is ambiguous
+  both method assertEquals(java.lang.Long,long) in org.junit.jupiter.api.Assertions and method assertEquals(long,long) in org.junit.jupiter.api.Assertions match
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/VoucherServiceTest.java:[501,9] reference to assertEquals is ambiguous
+  both method assertEquals(java.lang.Long,long) in org.junit.jupiter.api.Assertions and method assertEquals(long,long) in org.junit.jupiter.api.Assertions match
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/VoucherServiceTest.java:[503,9] reference to assertEquals is ambiguous
+  both method assertEquals(java.lang.Long,long) in org.junit.jupiter.api.Assertions and method assertEquals(long,long) in org.junit.jupiter.api.Assertions match
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/VoucherServiceTest.java:[587,37] incompatible types: long cannot be converted to java.lang.Integer
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/VoucherServiceTest.java:[615,9] cannot find symbol
+  symbol:   class Pageable
+  location: class com.example.Sneakers.services.VoucherServiceTest
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/StripeServiceTest.java:[51,19] cannot find symbol
+  symbol:   method setTotalMoney(long)
+  location: variable requestDTO of type com.example.Sneakers.dtos.StripePaymentRequestDTO
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/StripeServiceTest.java:[90,30] cannot find symbol
+  symbol:   method createCheckoutSession(com.example.Sneakers.dtos.StripePaymentRequestDTO)
+  location: variable stripeService of type com.example.Sneakers.services.StripeService
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/StripeServiceTest.java:[114,29] cannot find symbol
+  symbol:   method findByStripeSessionId(java.lang.String)
+  location: variable orderRepository of type com.example.Sneakers.repositories.OrderRepository
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/StripeServiceTest.java:[118,58] cannot find symbol
+  symbol:   method handlePaymentSuccess(java.lang.String)
+  location: variable stripeService of type com.example.Sneakers.services.StripeService
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/StripeServiceTest.java:[122,28] cannot find symbol
+  symbol:   method isSuccess()
+  location: variable response of type com.example.Sneakers.dtos.StripePaymentResponseDTO
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/StripeServiceTest.java:[142,29] cannot find symbol
+  symbol:   method findByStripeSessionId(java.lang.String)
+  location: variable orderRepository of type com.example.Sneakers.repositories.OrderRepository
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/StripeServiceTest.java:[145,58] cannot find symbol
+  symbol:   method handlePaymentSuccess(java.lang.String)
+  location: variable stripeService of type com.example.Sneakers.services.StripeService
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/StripeServiceTest.java:[148,28] cannot find symbol
+  symbol:   method isSuccess()
+  location: variable response of type com.example.Sneakers.dtos.StripePaymentResponseDTO
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/CategoryServiceTest.java:[43,17] cannot find symbol
+  symbol:   method description(java.lang.String)
+  location: class com.example.Sneakers.models.Category.CategoryBuilder
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/CategoryServiceTest.java:[48,20] cannot find symbol
+  symbol:   method setDescription(java.lang.String)
+  location: variable categoryDTO of type com.example.Sneakers.dtos.CategoryDTO
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/CategoryServiceTest.java:[72,56] cannot find symbol
+  symbol:   method getDescription()
+  location: variable result of type com.example.Sneakers.models.Category
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/CategoryServiceTest.java:[133,17] cannot find symbol
+  symbol:   method description(java.lang.String)
+  location: class com.example.Sneakers.models.Category.CategoryBuilder
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/CategoryServiceTest.java:[138,18] cannot find symbol
+  symbol:   method setDescription(java.lang.String)
+  location: variable updateDTO of type com.example.Sneakers.dtos.CategoryDTO
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/CategoryServiceTest.java:[148,51] cannot find symbol
+  symbol:   method getDescription()
+  location: variable result of type com.example.Sneakers.models.Category
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/ReviewServiceTest.java:[68,17] cannot find symbol
+  symbol:   method createdAt(java.time.LocalDateTime)
+  location: class com.example.Sneakers.models.Review.ReviewBuilder
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/ReviewServiceTest.java:[87,14] cannot find symbol
+  symbol:   variable userService
+  location: class com.example.Sneakers.services.ReviewServiceTest
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/ReviewServiceTest.java:[96,73] incompatible types: java.lang.String cannot be converted to java.lang.Long
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/ReviewServiceTest.java:[122,30] method findByProductId in interface com.example.Sneakers.repositories.ReviewRepository cannot be applied to given types;
+  required: java.lang.Long,org.springframework.data.domain.Pageable
+  found:    java.lang.Long
+  reason: actual and formal argument lists differ in length
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/ReviewServiceTest.java:[125,55] cannot find symbol
+  symbol:   method getReviewsByProduct(java.lang.Long)
+  location: variable reviewService of type com.example.Sneakers.services.ReviewService
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/ReviewServiceTest.java:[145,41] cannot find symbol
+  symbol:   method getAverageRating(java.lang.Long)
+  location: variable reviewService of type com.example.Sneakers.services.ReviewService
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/ReviewServiceTest.java:[163,41] cannot find symbol
+  symbol:   method getAverageRating(java.lang.Long)
+  location: variable reviewService of type com.example.Sneakers.services.ReviewService
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/ReviewServiceTest.java:[181,22] method deleteReview in class com.example.Sneakers.services.ReviewService cannot be applied to given types;
+  required: java.lang.Long,java.lang.Long
+  found:    java.lang.Long
+  reason: actual and formal argument lists differ in length
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/ReviewServiceTest.java:[211,48] method updateReview in class com.example.Sneakers.services.ReviewService cannot be applied to given types;
+  required: java.lang.Long,com.example.Sneakers.dtos.ReviewDTO,java.lang.Long
+  found:    java.lang.Long,com.example.Sneakers.dtos.ReviewDTO
+  reason: actual and formal argument lists differ in length
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/ReviewServiceTest.java:[230,35] cannot find symbol
+  symbol:   method countByProductId(java.lang.Long)
+  location: variable reviewService of type com.example.Sneakers.services.ReviewService
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/ReviewServiceTest.java:[248,30] cannot find symbol
+  symbol:   method findByUserId(java.lang.Long)
+  location: variable reviewRepository of type com.example.Sneakers.repositories.ReviewRepository
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/ReviewServiceTest.java:[251,45] cannot find symbol
+  symbol:   method getReviewsByUser(java.lang.Long)
+  location: variable reviewService of type com.example.Sneakers.services.ReviewService
+[INFO] 87 errors 
+[INFO] -------------------------------------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  8.698 s
+[INFO] Finished at: 2026-04-20T14:25:54+07:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.11.0:testCompile (default-testCompile) on project Sneakers: Compilation failure: Compilation failure: 
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/ProductServiceTest.java:[226,94] incompatible types: org.springframework.data.domain.Pageable cannot be converted to org.springframework.data.domain.PageRequest
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/ProductServiceTest.java:[269,94] incompatible types: org.springframework.data.domain.Pageable cannot be converted to org.springframework.data.domain.PageRequest
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/ProductServiceTest.java:[607,17] no suitable method found for thenReturn(java.util.List<java.lang.Object>)
+[ERROR]     method org.mockito.stubbing.OngoingStubbing.thenReturn(java.util.List<java.lang.Object[]>) is not applicable
+[ERROR]       (argument mismatch; inference variable T has incompatible bounds
+[ERROR]           equality constraints: java.lang.Object[]
+[ERROR]           lower bounds: java.lang.Object)
+[ERROR]     method org.mockito.stubbing.OngoingStubbing.thenReturn(java.util.List<java.lang.Object[]>,java.util.List<java.lang.Object[]>...) is not applicable
+[ERROR]       (argument mismatch; inference variable T has incompatible bounds
+[ERROR]           equality constraints: java.lang.Object[]
+[ERROR]           lower bounds: java.lang.Object)
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/ProductServiceTest.java:[638,17] no suitable method found for thenReturn(java.util.List<java.lang.Object>)
+[ERROR]     method org.mockito.stubbing.OngoingStubbing.thenReturn(java.util.List<java.lang.Object[]>) is not applicable
+[ERROR]       (argument mismatch; inference variable T has incompatible bounds
+[ERROR]           equality constraints: java.lang.Object[]
+[ERROR]           lower bounds: java.lang.Object)
+[ERROR]     method org.mockito.stubbing.OngoingStubbing.thenReturn(java.util.List<java.lang.Object[]>,java.util.List<java.lang.Object[]>...) is not applicable
+[ERROR]       (argument mismatch; inference variable T has incompatible bounds
+[ERROR]           equality constraints: java.lang.Object[]
+[ERROR]           lower bounds: java.lang.Object)
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/components/LocalizationUtilsTest.java:[105,42] cannot find symbol
+[ERROR]   symbol:   method getCurrentLocale()
+[ERROR]   location: variable localizationUtils of type com.example.Sneakers.components.LocalizationUtils
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/components/LocalizationUtilsTest.java:[125,26] cannot find symbol
+[ERROR]   symbol:   method setLocale(java.util.Locale)
+[ERROR]   location: variable localizationUtils of type com.example.Sneakers.components.LocalizationUtils
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/BannerServiceTest.java:[44,17] cannot find symbol
+[ERROR]   symbol:   method linkUrl(java.lang.String)
+[ERROR]   location: class com.example.Sneakers.models.Banner.BannerBuilder
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/BannerServiceTest.java:[52,18] cannot find symbol
+[ERROR]   symbol:   method setLinkUrl(java.lang.String)
+[ERROR]   location: variable bannerDTO of type com.example.Sneakers.dtos.BannerDTO
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/BannerServiceTest.java:[54,18] cannot find symbol
+[ERROR]   symbol:   method setActive(boolean)
+[ERROR]   location: variable bannerDTO of type com.example.Sneakers.dtos.BannerDTO
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/BannerServiceTest.java:[72,51] incompatible types: com.example.Sneakers.dtos.BannerDTO cannot be converted to com.example.Sneakers.models.Banner
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/BannerServiceTest.java:[78,38] cannot find symbol
+[ERROR]   symbol:   method getLinkUrl()
+[ERROR]   location: variable result of type com.example.Sneakers.models.Banner
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/BannerServiceTest.java:[80,26] cannot find symbol
+[ERROR]   symbol:   method getActive()
+[ERROR]   location: variable result of type com.example.Sneakers.models.Banner
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/BannerServiceTest.java:[100,30] cannot find symbol
+[ERROR]   symbol:   method findByActiveTrueOrderByDisplayOrderAsc()
+[ERROR]   location: variable bannerRepository of type com.example.Sneakers.repositories.BannerRepository
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/BannerServiceTest.java:[103,58] incompatible types: java.util.List<com.example.Sneakers.dtos.BannerDTO> cannot be converted to java.util.List<com.example.Sneakers.models.Banner>
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/BannerServiceTest.java:[124,52] incompatible types: com.example.Sneakers.dtos.BannerDTO cannot be converted to com.example.Sneakers.models.Banner
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/BannerServiceTest.java:[145,17] cannot find symbol
+[ERROR]   symbol:   method active(boolean)
+[ERROR]   location: class com.example.Sneakers.models.Banner.BannerBuilder
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/BannerServiceTest.java:[151,18] cannot find symbol
+[ERROR]   symbol:   method setLinkUrl(java.lang.String)
+[ERROR]   location: variable updateDTO of type com.example.Sneakers.dtos.BannerDTO
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/BannerServiceTest.java:[153,18] cannot find symbol
+[ERROR]   symbol:   method setActive(boolean)
+[ERROR]   location: variable updateDTO of type com.example.Sneakers.dtos.BannerDTO
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/BannerServiceTest.java:[159,51] incompatible types: com.example.Sneakers.dtos.BannerDTO cannot be converted to com.example.Sneakers.models.Banner
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/BannerServiceTest.java:[164,41] cannot find symbol
+[ERROR]   symbol:   method getLinkUrl()
+[ERROR]   location: variable result of type com.example.Sneakers.models.Banner
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/BannerServiceTest.java:[166,26] cannot find symbol
+[ERROR]   symbol:   method getActive()
+[ERROR]   location: variable result of type com.example.Sneakers.models.Banner
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/BannerServiceTest.java:[195,49] cannot find symbol
+[ERROR]   symbol:   method active(boolean)
+[ERROR]   location: class com.example.Sneakers.models.Banner.BannerBuilder
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/BannerServiceTest.java:[196,49] cannot find symbol
+[ERROR]   symbol:   method active(boolean)
+[ERROR]   location: class com.example.Sneakers.models.Banner.BannerBuilder
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/BannerServiceTest.java:[197,50] cannot find symbol
+[ERROR]   symbol:   method active(boolean)
+[ERROR]   location: class com.example.Sneakers.models.Banner.BannerBuilder
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/BannerServiceTest.java:[199,30] cannot find symbol
+[ERROR]   symbol:   method findByActiveTrue()
+[ERROR]   location: variable bannerRepository of type com.example.Sneakers.repositories.BannerRepository
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/BannerServiceTest.java:[202,44] cannot find symbol
+[ERROR]   symbol:   method getActiveBanners()
+[ERROR]   location: variable bannerService of type com.example.Sneakers.services.BannerService
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/BannerServiceTest.java:[206,45] invalid method reference
+[ERROR]   cannot find symbol
+[ERROR]     symbol:   method getActive(T)
+[ERROR]     location: class com.example.Sneakers.models.Banner
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/OrderServiceTest.java:[117,37] incompatible types: long cannot be converted to java.lang.Integer
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/OrderServiceTest.java:[171,54] cannot find symbol
+[ERROR]   symbol:   method getStatus()
+[ERROR]   location: variable response of type com.example.Sneakers.responses.OrderIdResponse
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/OrderServiceTest.java:[227,9] reference to assertEquals is ambiguous
+[ERROR]   both method assertEquals(java.lang.Long,long) in org.junit.jupiter.api.Assertions and method assertEquals(long,long) in org.junit.jupiter.api.Assertions match
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/OrderServiceTest.java:[326,51] no suitable method found for thenReturn(java.lang.String)
+[ERROR]     method org.mockito.stubbing.OngoingStubbing.thenReturn(java.util.Map<java.lang.String,java.lang.Object>) is not applicable
+[ERROR]       (argument mismatch; java.lang.String cannot be converted to java.util.Map<java.lang.String,java.lang.Object>)
+[ERROR]     method org.mockito.stubbing.OngoingStubbing.thenReturn(java.util.Map<java.lang.String,java.lang.Object>,java.util.Map<java.lang.String,java.lang.Object>...) is not applicable
+[ERROR]       (argument mismatch; java.lang.String cannot be converted to java.util.Map<java.lang.String,java.lang.Object>)
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/OrderServiceTest.java:[465,26] cannot find symbol
+[ERROR]   symbol:   method isActive()
+[ERROR]   location: variable order of type com.example.Sneakers.models.Order
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/OrderServiceTest.java:[585,39] cannot find symbol
+[ERROR]   symbol:   variable SHIPPING
+[ERROR]   location: class com.example.Sneakers.models.OrderStatus
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/OrderServiceTest.java:[628,9] cannot find symbol
+[ERROR]   symbol:   class DashboardStatsDTO
+[ERROR]   location: class com.example.Sneakers.services.OrderServiceTest
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/OrderServiceTest.java:[771,51] no suitable method found for thenReturn(java.lang.String)
+[ERROR]     method org.mockito.stubbing.OngoingStubbing.thenReturn(java.util.Map<java.lang.String,java.lang.Object>) is not applicable
+[ERROR]       (argument mismatch; java.lang.String cannot be converted to java.util.Map<java.lang.String,java.lang.Object>)
+[ERROR]     method org.mockito.stubbing.OngoingStubbing.thenReturn(java.util.Map<java.lang.String,java.lang.Object>,java.util.Map<java.lang.String,java.lang.Object>...) is not applicable
+[ERROR]       (argument mismatch; java.lang.String cannot be converted to java.util.Map<java.lang.String,java.lang.Object>)
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/OrderServiceTest.java:[818,37] incompatible types: long cannot be converted to java.lang.Integer
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/OrderServiceTest.java:[857,37] incompatible types: long cannot be converted to java.lang.Integer
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/OrderServiceTest.java:[926,58] cannot find symbol
+[ERROR]   symbol:   method getStatus()
+[ERROR]   location: variable response of type com.example.Sneakers.responses.OrderIdResponse
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/VoucherServiceTest.java:[67,37] incompatible types: long cannot be converted to java.lang.Integer
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/VoucherServiceTest.java:[81,42] incompatible types: long cannot be converted to java.lang.Integer
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/VoucherServiceTest.java:[84,32] incompatible types: long cannot be converted to java.lang.Integer
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/VoucherServiceTest.java:[122,9] reference to assertEquals is ambiguous
+[ERROR]   both method assertEquals(java.lang.Long,long) in org.junit.jupiter.api.Assertions and method assertEquals(long,long) in org.junit.jupiter.api.Assertions match
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/VoucherServiceTest.java:[124,9] reference to assertEquals is ambiguous
+[ERROR]   both method assertEquals(java.lang.Long,long) in org.junit.jupiter.api.Assertions and method assertEquals(long,long) in org.junit.jupiter.api.Assertions match
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/VoucherServiceTest.java:[125,9] reference to assertEquals is ambiguous
+[ERROR]   both method assertEquals(java.lang.Long,long) in org.junit.jupiter.api.Assertions and method assertEquals(long,long) in org.junit.jupiter.api.Assertions match
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/VoucherServiceTest.java:[214,9] reference to assertEquals is ambiguous
+[ERROR]   both method assertEquals(java.lang.Long,long) in org.junit.jupiter.api.Assertions and method assertEquals(long,long) in org.junit.jupiter.api.Assertions match
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/VoucherServiceTest.java:[225,9] cannot find symbol
+[ERROR]   symbol:   class Pageable
+[ERROR]   location: class com.example.Sneakers.services.VoucherServiceTest
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/VoucherServiceTest.java:[247,9] cannot find symbol
+[ERROR]   symbol:   class Pageable
+[ERROR]   location: class com.example.Sneakers.services.VoucherServiceTest
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/VoucherServiceTest.java:[277,37] incompatible types: long cannot be converted to java.lang.Integer
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/VoucherServiceTest.java:[297,9] reference to assertEquals is ambiguous
+[ERROR]   both method assertEquals(java.lang.Long,long) in org.junit.jupiter.api.Assertions and method assertEquals(long,long) in org.junit.jupiter.api.Assertions match
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/VoucherServiceTest.java:[318,37] incompatible types: long cannot be converted to java.lang.Integer
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/VoucherServiceTest.java:[418,9] reference to assertEquals is ambiguous
+[ERROR]   both method assertEquals(java.lang.Long,long) in org.junit.jupiter.api.Assertions and method assertEquals(long,long) in org.junit.jupiter.api.Assertions match
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/VoucherServiceTest.java:[422,9] reference to assertEquals is ambiguous
+[ERROR]   both method assertEquals(java.lang.Long,long) in org.junit.jupiter.api.Assertions and method assertEquals(long,long) in org.junit.jupiter.api.Assertions match
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/VoucherServiceTest.java:[442,36] incompatible types: long cannot be converted to java.lang.Integer
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/VoucherServiceTest.java:[469,37] incompatible types: long cannot be converted to java.lang.Integer
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/VoucherServiceTest.java:[482,41] incompatible types: long cannot be converted to java.lang.Integer
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/VoucherServiceTest.java:[484,31] incompatible types: long cannot be converted to java.lang.Integer
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/VoucherServiceTest.java:[499,9] reference to assertEquals is ambiguous
+[ERROR]   both method assertEquals(java.lang.Long,long) in org.junit.jupiter.api.Assertions and method assertEquals(long,long) in org.junit.jupiter.api.Assertions match
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/VoucherServiceTest.java:[501,9] reference to assertEquals is ambiguous
+[ERROR]   both method assertEquals(java.lang.Long,long) in org.junit.jupiter.api.Assertions and method assertEquals(long,long) in org.junit.jupiter.api.Assertions match
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/VoucherServiceTest.java:[503,9] reference to assertEquals is ambiguous
+[ERROR]   both method assertEquals(java.lang.Long,long) in org.junit.jupiter.api.Assertions and method assertEquals(long,long) in org.junit.jupiter.api.Assertions match
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/VoucherServiceTest.java:[587,37] incompatible types: long cannot be converted to java.lang.Integer
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/VoucherServiceTest.java:[615,9] cannot find symbol
+[ERROR]   symbol:   class Pageable
+[ERROR]   location: class com.example.Sneakers.services.VoucherServiceTest
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/StripeServiceTest.java:[51,19] cannot find symbol
+[ERROR]   symbol:   method setTotalMoney(long)
+[ERROR]   location: variable requestDTO of type com.example.Sneakers.dtos.StripePaymentRequestDTO
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/StripeServiceTest.java:[90,30] cannot find symbol
+[ERROR]   symbol:   method createCheckoutSession(com.example.Sneakers.dtos.StripePaymentRequestDTO)
+[ERROR]   location: variable stripeService of type com.example.Sneakers.services.StripeService
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/StripeServiceTest.java:[114,29] cannot find symbol
+[ERROR]   symbol:   method findByStripeSessionId(java.lang.String)
+[ERROR]   location: variable orderRepository of type com.example.Sneakers.repositories.OrderRepository
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/StripeServiceTest.java:[118,58] cannot find symbol
+[ERROR]   symbol:   method handlePaymentSuccess(java.lang.String)
+[ERROR]   location: variable stripeService of type com.example.Sneakers.services.StripeService
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/StripeServiceTest.java:[122,28] cannot find symbol
+[ERROR]   symbol:   method isSuccess()
+[ERROR]   location: variable response of type com.example.Sneakers.dtos.StripePaymentResponseDTO
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/StripeServiceTest.java:[142,29] cannot find symbol
+[ERROR]   symbol:   method findByStripeSessionId(java.lang.String)
+[ERROR]   location: variable orderRepository of type com.example.Sneakers.repositories.OrderRepository
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/StripeServiceTest.java:[145,58] cannot find symbol
+[ERROR]   symbol:   method handlePaymentSuccess(java.lang.String)
+[ERROR]   location: variable stripeService of type com.example.Sneakers.services.StripeService
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/StripeServiceTest.java:[148,28] cannot find symbol
+[ERROR]   symbol:   method isSuccess()
+[ERROR]   location: variable response of type com.example.Sneakers.dtos.StripePaymentResponseDTO
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/CategoryServiceTest.java:[43,17] cannot find symbol
+[ERROR]   symbol:   method description(java.lang.String)
+[ERROR]   location: class com.example.Sneakers.models.Category.CategoryBuilder
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/CategoryServiceTest.java:[48,20] cannot find symbol
+[ERROR]   symbol:   method setDescription(java.lang.String)
+[ERROR]   location: variable categoryDTO of type com.example.Sneakers.dtos.CategoryDTO
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/CategoryServiceTest.java:[72,56] cannot find symbol
+[ERROR]   symbol:   method getDescription()
+[ERROR]   location: variable result of type com.example.Sneakers.models.Category
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/CategoryServiceTest.java:[133,17] cannot find symbol
+[ERROR]   symbol:   method description(java.lang.String)
+[ERROR]   location: class com.example.Sneakers.models.Category.CategoryBuilder
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/CategoryServiceTest.java:[138,18] cannot find symbol
+[ERROR]   symbol:   method setDescription(java.lang.String)
+[ERROR]   location: variable updateDTO of type com.example.Sneakers.dtos.CategoryDTO
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/CategoryServiceTest.java:[148,51] cannot find symbol
+[ERROR]   symbol:   method getDescription()
+[ERROR]   location: variable result of type com.example.Sneakers.models.Category
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/ReviewServiceTest.java:[68,17] cannot find symbol
+[ERROR]   symbol:   method createdAt(java.time.LocalDateTime)
+[ERROR]   location: class com.example.Sneakers.models.Review.ReviewBuilder
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/ReviewServiceTest.java:[87,14] cannot find symbol
+[ERROR]   symbol:   variable userService
+[ERROR]   location: class com.example.Sneakers.services.ReviewServiceTest
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/ReviewServiceTest.java:[96,73] incompatible types: java.lang.String cannot be converted to java.lang.Long
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/ReviewServiceTest.java:[122,30] method findByProductId in interface com.example.Sneakers.repositories.ReviewRepository cannot be applied to given types;
+[ERROR]   required: java.lang.Long,org.springframework.data.domain.Pageable
+[ERROR]   found:    java.lang.Long
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/ReviewServiceTest.java:[125,55] cannot find symbol
+[ERROR]   symbol:   method getReviewsByProduct(java.lang.Long)
+[ERROR]   location: variable reviewService of type com.example.Sneakers.services.ReviewService
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/ReviewServiceTest.java:[145,41] cannot find symbol
+[ERROR]   symbol:   method getAverageRating(java.lang.Long)
+[ERROR]   location: variable reviewService of type com.example.Sneakers.services.ReviewService
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/ReviewServiceTest.java:[163,41] cannot find symbol
+[ERROR]   symbol:   method getAverageRating(java.lang.Long)
+[ERROR]   location: variable reviewService of type com.example.Sneakers.services.ReviewService
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/ReviewServiceTest.java:[181,22] method deleteReview in class com.example.Sneakers.services.ReviewService cannot be applied to given types;
+[ERROR]   required: java.lang.Long,java.lang.Long
+[ERROR]   found:    java.lang.Long
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/ReviewServiceTest.java:[211,48] method updateReview in class com.example.Sneakers.services.ReviewService cannot be applied to given types;
+[ERROR]   required: java.lang.Long,com.example.Sneakers.dtos.ReviewDTO,java.lang.Long
+[ERROR]   found:    java.lang.Long,com.example.Sneakers.dtos.ReviewDTO
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/ReviewServiceTest.java:[230,35] cannot find symbol
+[ERROR]   symbol:   method countByProductId(java.lang.Long)
+[ERROR]   location: variable reviewService of type com.example.Sneakers.services.ReviewService
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/ReviewServiceTest.java:[248,30] cannot find symbol
+[ERROR]   symbol:   method findByUserId(java.lang.Long)
+[ERROR]   location: variable reviewRepository of type com.example.Sneakers.repositories.ReviewRepository
+[ERROR] /home/vietha/source/lockkorea_co_Ngoc/Backend/src/test/java/com/example/Sneakers/services/ReviewServiceTest.java:[251,45] cannot find symbol
+[ERROR]   symbol:   method getReviewsByUser(java.lang.Long)
+[ERROR]   location: variable reviewService of type com.example.Sneakers.services.ReviewService
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException

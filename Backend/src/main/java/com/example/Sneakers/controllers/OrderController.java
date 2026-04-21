@@ -93,9 +93,13 @@ public class OrderController {
     public ResponseEntity<?> getOrder(@Valid @PathVariable("id") Long orderId){
         try {
             OrderResponse existingOrder = orderService.getOrder(orderId);
-            return ResponseEntity.ok((existingOrder));
+            if (existingOrder == null) {
+                return ResponseEntity.notFound().build();
+            }
+            return ResponseEntity.ok(existingOrder);
         }
         catch (Exception e ){
+            e.printStackTrace();
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }

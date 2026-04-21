@@ -72,15 +72,28 @@ public class JwtTokenUtils {
     }
     //check expiration
     public boolean isTokenExpired(String token) {
-        Date expirationDate = this.extractClaim(token, Claims::getExpiration);
-        return expirationDate.before(new Date());
+        try {
+            Date expirationDate = this.extractClaim(token, Claims::getExpiration);
+            return expirationDate.before(new Date());
+        } catch (Exception e) {
+            // If token is expired or invalid, treat as expired
+            return true;
+        }
     }
     public String extractPhoneNumber(String token) {
-        return extractClaim(token, Claims::getSubject);
+        try {
+            return extractClaim(token, Claims::getSubject);
+        } catch (Exception e) {
+            throw new RuntimeException("Cannot extract phone number from token: " + e.getMessage());
+        }
     }
     public boolean validateToken(String token, UserDetails userDetails) {
-        String phoneNumber = extractPhoneNumber(token);
-        return (phoneNumber.equals(userDetails.getUsername()))
-                && !isTokenExpired(token);
+        try {
+            String phoneNumber = extractPhoneNumber(token);
+            return (phoneNumber.equals(userDetails.getUsername()))
+                    && !isTokenExpired(token);
+        } catch (Exception e) {
+            return false; // Token invalid or expired
+        }
     }
 }
