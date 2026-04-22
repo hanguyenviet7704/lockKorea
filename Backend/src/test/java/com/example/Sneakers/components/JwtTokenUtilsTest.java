@@ -111,12 +111,12 @@ class JwtTokenUtilsTest {
     void TC_JWT_003_extractClaim_ShouldExtractCorrectClaim() throws Exception {
         // Arrange
         com.example.Sneakers.models.User user = com.example.Sneakers.models.User.builder()
-                .id(1L)
+                .id(30L)
                 .phoneNumber("0123456789")
                 .build();
 
         String token = jwtTokenUtils.generateToken(user);
-
+        System.out.println(token);
         // Act
         String extractedPhone = jwtTokenUtils.extractClaim(token, Claims::getSubject);
         Long extractedUserId = jwtTokenUtils.extractClaim(token, claims -> claims.get("userId", Long.class));

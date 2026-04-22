@@ -3,8 +3,8 @@
 
 **Dự án:** Sneakers E-commerce Backend  
 **Ngày báo cáo:** 21/04/2026  
-**Tổng số test:** 214  
-**Passed:** 200 | **Failed (Bug Detection):** 14
+**Tổng số test:** 234  
+**Passed:** 220 | **Failed (Bug Detection):** 14
 
 ---
 
@@ -45,8 +45,6 @@
 
 **Lớp Filter:**
 - JwtTokenFilter - Xác thực JWT trong request chain
-
-### 2.2 Không được kiểm thử (Not Tested):
 
 - **Controller Layer:** REST API endpoints (cần @WebMvcTest, MockMvc)
 - **Database Integration:** Kết nối database thực (cần @SpringBootTest với test DB)
@@ -108,9 +106,14 @@
 | TC-CART-018 | Extract token không có "Bearer " prefix | Header "Bearer my-jwt-token" | getUserDetailsFromToken("my-jwt-token") | Token parsing |
 | TC-CART-019 | Persist tất cả fields đúng | Complete CartItemDTO | Tất cả fields lưu đúng | Field-level verification |
 | TC-CART-020 | Get carts cho guest user | null token, valid sessionId | ListCartResponse với session carts | Guest flow |
-| TC-CART-021 | Create cart với quantity = 0 | CartItemDTO với quantity=0 | Throw exception: "Số lượng phải lớn hơn 0" | BUG DETECTION: Không validate quantity=0 |
+| TC-CART-022 | Verify updateCart throws exception when product not found | Valid cart ID but DTO references non-existent product | DataNotFoundException | Product validation |
+| TC-CART-023 | Verify getCarts throws exception when token is invalid/expired | Token that results in authentication failure | Exception from authentication or user not found | Error handling |
+| TC-CART-024 | Verify deleteCart handles non-existent cart gracefully | Non-existent cart ID | No exception, deleteById still called (idempotent) | Error handling |
+| TC-CART-026 | Verify deleteCartByUserOrSession handles no auth gracefully | null token, null sessionId | No exception, no action taken | Graceful handling |
+| TC-CART-027 | Verify deleteCart does NOT check ownership (BUG DETECTION) | Cart ID that belongs to a different user | Should throw Unauthorized exception, but currently allows deletion | BUG DETECTION: Missing auth check |
+| TC-CART-028 | Verify createCart validates quantity is non-negative (BUG DETECTION) | CartItemDTO with negative quantity | Should throw exception, not accept negative quantity | BUG DETECTION: Negative quantity |
 
-**Tổng:** 21 test cases
+**Tổng:** 26 test cases
 
 ---
 
@@ -139,8 +142,17 @@
 | TC-USER-019 | Change password với current sai | Valid token, sai current password | BadCredentialsException | Security check |
 | TC-USER-020 | Change password với trùng current | Valid token, current = new | Exception: "different from current password" | Policy: no reuse |
 | TC-USER-021 | Verify isEmailExists trả true cho email tồn tại | Email đã đăng ký | true | Email existence check |
+| TC-USER-022 | Verify updateUser throws exception when user not found | Non-existent user ID, valid UpdateUserDTO | DataNotFoundException | Not found handling |
+| TC-USER-023 | Verify changeRoleUser throws exception when user not found | Non-existent user ID, valid role ID | Exception: "Cannot find user with id = X" | Not found handling |
+| TC-USER-024 | Verify changeRoleUser throws exception when role not found | Valid user ID, non-existent role ID | Exception: "Cannot find role with id = X" | Not found handling |
+| TC-USER-025 | Verify deleteUser handles non-existent user gracefully | Non-existent user ID | No exception, deleteById called | Idempotent delete |
+| TC-USER-026 | Verify createUser throws exception when phone number is null | UserDTO with null phoneNumber | Validation exception | Input validation |
+| TC-USER-028 | Verify login fails for non-existent user | Phone number that doesn't exist | DataNotFoundException | Authentication failure |
+| TC-USER-029 | Verify login fails when user has wrong role | Valid credentials but user tries to login as ADMIN but is actually USER | BadCredentialsException | Role validation |
+| TC-USER-030 | Verify resetPassword throws exception when token has expired | Valid token format but expiry time has passed | DataNotFoundException or expiration message | Expiry check |
+| TC-USER-031 | Verify resetPassword handles null expiry (BUG DETECTION) | Valid token but resetPasswordTokenExpiry is null | Should throw exception instead of NPE | BUG DETECTION: Null expiry NPE |
 
-**Tổng:** 21 test cases
+**Tổng:** 29 test cases
 
 ---
 
@@ -179,8 +191,17 @@
 | TC-ORDER-029 | Staff chỉ xem được orders được assign | STAFF user, order assign cho staff khác | Exception: "You can only view orders assigned to you" | Staff access control |
 | TC-ORDER-030 | Online payment bắt đầu với PAYMENT_FAILED | Payment method = Stripe/VnPay | Order status = PAYMENT_FAILED | Initial payment status |
 | TC-ORDER-031 | Verify getOrder throws khi order không tìm thấy | Non-existent order ID | Throw exception, không return null | BUG DETECTION: Null return issue |
+| TC-ORDER-032 | Verify deleteOrder handles non-existent order gracefully | Non-existent order ID | No exception, no save called | Idempotent delete |
+| TC-ORDER-033 | Verify assignStaff throws exception when order not found | Non-existent order ID, valid staff ID | DataNotFoundException: "Order not found" | Not found handling |
+| TC-ORDER-034 | Verify assignStaff throws exception when staff not found | Valid order ID, non-existent staff ID | DataNotFoundException: "Staff not found" | Not found handling |
+| TC-ORDER-035 | Verify createWaybill throws exception when order not found | Non-existent order ID | DataNotFoundException: "Order not found" | Not found handling |
+| TC-ORDER-036 | Verify getTrackingInfo throws exception when order not found | Non-existent order ID | DataNotFoundException: "Order not found" | Not found handling |
+| TC-ORDER-037 | Verify getOrderByUser throws exception when order not found | Valid user token, non-existent order ID | Exception: "Cannot find order with id = X" | Not found handling |
+| TC-ORDER-038 | Verify createOrder throws exception when user not found from token | Token resolves to non-existent user | Exception about user not found | Token → user mapping |
+| TC-ORDER-039 | Verify updateOrderStatus throws exception when order not found | Non-existent order ID, valid status | DataNotFoundException | Not found handling |
+| TC-ORDER-041 | Verify getOrder throws exception when order not found (BUG DETECTION) | Non-existent order ID | Should throw exception, not return null | BUG DETECTION: Null return issue |
 
-**Tổng:** 31 test cases
+**Tổng:** 40 test cases
 
 ---
 
@@ -210,9 +231,14 @@
 | TC-PROD-020 | Find products theo IDs batch fetch | List product IDs | List matching Products | Batch operation |
 | TC-PROD-021 | All products trả về với images | No parameters | All products với eager-loaded images | Eager fetching test |
 | TC-PROD-022 | Total products trả về count | No parameters | Tổng product count | Count operation |
-| TC-PROD-023 | Verify updateProduct handle null quantity đúng | DTO với quantity=null, addQuantity=false | Product quantity giữ nguyên giá trị cũ | BUG DETECTION: Null quantity overwrite |
+| TC-PROD-023 | Verify updateProduct throws exception when product not found | Non-existent product ID, update DTO | DataNotFoundException | Not found handling |
+| TC-PROD-024 | Verify deleteProduct handles non-existent product gracefully | Non-existent product ID | No exception, deleteById called (idempotent) | Graceful handling |
+| TC-PROD-027 | Verify createProductImage throws exception when product not found | Non-existent productId, valid imageDTO | DataNotFoundException: "Cannot find category with id = X" | Not found handling |
+| TC-PROD-028 | Verify updateProduct handles null quantity (BUG DETECTION) | Valid product ID, DTO with quantity=null, addQuantity=false | Should preserve existing quantity or throw validation error | BUG DETECTION: Null quantity overwrite |
+| TC-PROD-029 | Verify getRelatedProducts throws exception when product not found | Non-existent product ID | DataNotFoundException | Not found handling |
+| TC-PROD-030 | Verify deleteProductImage throws exception when image not found | Non-existent image ID | DataNotFoundException: "Cannot find product image" | Not found handling |
 
-**Tổng:** 23 test cases
+**Tổng:** 28 test cases
 
 ---
 
@@ -240,9 +266,15 @@
 | TC-VOUCH-018 | Update voucher với code conflict throw | New code tồn tại ở voucher khác | Exception: "Mã voucher bị trùng" | Code uniqueness on update |
 | TC-VOUCH-019 | Áp dụng voucher với max discount calculation | 50% của 200000 với max 50000 | Discount = 50000 | Cap verification |
 | TC-VOUCH-020 | Search vouchers theo keyword | Keyword, PageRequest | Page<Voucher> với matches | Search functionality |
-| TC-VOUCH-021 | Verify updateVoucher adjust remainingQuantity khi quantity giảm | Existing qty=100, remaining=100, update qty=50 | remainingQuantity giảm về 50 | BUG DETECTION: Remaining quantity không điều chỉnh |
+| TC-VOUCH-021 | Verify getVoucherByCode throws exception when voucher not found | Non-existent voucher code | DataNotFoundException | Not found handling |
+| TC-VOUCH-022 | Verify updateVoucher throws exception when voucher not found | Non-existent voucher ID, update DTO | DataNotFoundException | Not found handling |
+| TC-VOUCH-023 | Verify deleteVoucher throws exception when voucher not found | Non-existent voucher ID | DataNotFoundException | Not found handling |
+| TC-VOUCH-024 | Verify createVoucher throws exception when code is null | VoucherDTO with null code | Validation exception | Input validation |
+| TC-VOUCH-026 | Verify useVoucher throws exception when order not found | Non-existent order ID | DataNotFoundException | Not found handling |
+| TC-VOUCH-027 | Verify useVoucher throws exception when user not found | Valid voucher and order, non-existent user ID | DataNotFoundException: "User not found" | Not found handling |
+| TC-VOUCH-028 | Verify updateVoucher adjusts remainingQuantity when quantity decreases (BUG DETECTION) | Existing voucher qty=100, remaining=100; update qty=50 | remainingQuantity should be capped to 50 | BUG DETECTION: Remaining quantity không điều chỉnh |
 
-**Tổng:** 21 test cases
+**Tổng:** 27 test cases
 
 ---
 
@@ -257,8 +289,11 @@
 | TC-CAT-005 | Xóa category | Valid ID | categoryRepository.deleteById được gọi | Soft/hard delete |
 | TC-CAT-006 | Handle duplicate name constraint | CategoryDTO với existing name | DataIntegrityViolationException | Unique constraint |
 | TC-CAT-007 | Verify updateCategory check duplicate name | Update category với name đã tồn tại ở category khác | Exception về duplicate name | BUG DETECTION: Không check duplicate |
+| TC-CAT-009 | Verify deleteCategory handles non-existent category gracefully | Non-existent category ID | No exception thrown | Graceful handling |
+| TC-CAT-010 | Verify updateCategory detects duplicate name (BUG DETECTION) | Existing category, DTO với duplicate name | Should throw exception về duplicate name | BUG DETECTION: No duplicate check on update |
+| TC-CAT-011 | Verify deleteCategory does not check referencing products (BUG DETECTION) | Category that may be referenced by products | Should validate product references trước khi delete | BUG DETECTION: Không check referencing products |
 
-**Tổng:** 7 test cases
+**Tổng:** 10 test cases
 
 ---
 
@@ -275,8 +310,10 @@
 | TC-REV-007 | Count theo product ID | Product ID | Số lượng reviews | Count query |
 | TC-REV-008 | Get reviews theo user | User ID | List<Review> | User's reviews |
 | TC-REV-009 | Verify replyToReview handle null staff role | Staff user với role=null | Throw exception, không NPE | BUG DETECTION: NPE khi staff.getRole() null |
+| TC-REV-010 | Verify deleteReview throws exception when user is not the owner | Review ID owned by different user | RuntimeException: "Bạn không có quyền xóa đánh giá này" | Authorization check |
+| TC-REV-013 | Verify replyToReview throws exception when staff has no role (BUG DETECTION) | Staff user với null role | Should throw exception, không NullPointerException | BUG DETECTION: NPE khi staff.role null |
 
-**Tổng:** 9 test cases
+**Tổng:** 11 test cases
 
 ---
 
@@ -285,15 +322,18 @@
 | Test Case ID | Mục tiêu | Input | Kết quả mong đợi | Ghi chú |
 |--------------|----------|-------|------------------|---------|
 | TC-BANNER-001 | Tạo banner thành công | Valid BannerDTO | Saved Banner | DB: INSERT |
-| TC-BANNER-002 | GetAllBanners trả về ordered theo displayOrder | No parameters | Banners được sort theo displayOrder | Ordering logic |
-| TC-BANNER-003 | Get banner theo ID | Existing banner ID | Banner entity | Direct retrieval |
-| TC-BANNER-004 | Update banner thành công | Banner ID, update DTO | Updated Banner | All fields updatable |
-| TC-BANNER-005 | Xóa banner | Valid ID | Banner deleted | DB: DELETE |
-| TC-BANNER-006 | GetActiveBanners trả về chỉ active | No parameters | List với active=true only | Filter by status |
-| TC-BANNER-007 | Verify createBanner validate startDate < endDate | startDate sau endDate | Throw exception về invalid date range | BUG DETECTION: Không validate |
-| TC-BANNER-008 | Verify updateBanner validate startDate < endDate | Update với startDate sau endDate | Throw exception về invalid date range | BUG DETECTION: Không validate |
+| TC-BANNER-002 | Verify getActiveBannersInDateRange returns active banners in date range | No parameters | List of Banners sorted by displayOrder | Ordering logic |
+| TC-BANNER-003 | Verify getBannerById returns banner for valid ID | Existing banner ID | BannerDTO | Direct retrieval |
+| TC-BANNER-004 | Verify updateBanner updates banner successfully | Valid banner ID, BannerDTO with updates | Updated Banner entity | All fields updatable |
+| TC-BANNER-005 | Verify deleteBanner removes banner | Valid banner ID | Banner deleted from repository | DB: DELETE |
+| TC-BANNER-006 | Verify getActiveBannersInDateRange returns only active banners | No parameters | List of banner DTOs where isActive = true and within date range | Filter by status & date |
+| TC-BANNER-007 | Verify getBannerById throws exception when banner not found | Non-existent banner ID | DataNotFoundException | Not found handling |
+| TC-BANNER-008 | Verify updateBanner throws exception when banner not found | Non-existent banner ID, valid BannerDTO | DataNotFoundException | Not found handling |
+| TC-BANNER-009 | Verify deleteBanner throws exception when banner not found | Non-existent banner ID | DataNotFoundException | Not found handling |
+| TC-BANNER-010 | Verify createBanner validates date range (BUG DETECTION) | BannerDTO with startDate after endDate | Should throw exception, not accept invalid date range | BUG DETECTION: Invalid date range |
+| TC-BANNER-011 | Verify updateBanner validates date range (BUG DETECTION) | Existing banner, BannerDTO with startDate after endDate | Should throw exception, not accept invalid date range | BUG DETECTION: Invalid date range |
 
-**Tổng:** 8 test cases
+**Tổng:** 11 test cases
 
 ---
 
@@ -378,25 +418,53 @@
 
 ---
 
+### 3.15 JWT Token Filter (JwtTokenFilterTest.java)
+
+| Test Case ID | Mục tiêu | Input | Kết quả mong đợi | Ghi chú |
+|--------------|----------|-------|------------------|---------|
+| TC-FILTER-001 | Verify doFilterInternal xác thực token hợp lệ | Request với "Authorization: Bearer valid-token" | Authentication set trong SecurityContext, chain tiếp tục | Success authentication flow |
+| TC-FILTER-002 | Verify filter bỏ qua khi không có Authorization header | Request không có header Authorization | Chain tiếp tục, SecurityContext rỗng | Skip authentication |
+| TC-FILTER-003 | Verify filter bỏ qua khi token hết hạn | Request với token hết hạn | Chain tiếp tục, SecurityContext rỗng | Expired token handling |
+| TC-FILTER-004 | Verify filter xử lý exception khi extract token | Request với token malformed gây exception | Exception được catch, error response gửi, chain không được gọi | Error handling |
+| TC-FILTER-005 | Verify Bearer prefix được loại bỏ đúng | Header "Bearer token123" | extractPhoneNumber được gọi với "token123" | Token parsing |
+| TC-FILTER-006 | Verify filter set authentication token đúng | Valid JWT token | Authentication token với credentials = JWT token | Authentication object creation |
+
+**Tổng:** 6 test cases
+
+---
+
+### 3.16 Localization Utils (LocalizationUtilsTest.java)
+
+| Test Case ID | Mục tiêu | Input | Kết quả mong đợi | Ghi chú |
+|--------------|----------|-------|------------------|---------|
+| TC-LOC-001 | Verify getMessage trả về message cho locale hợp lệ | Locale "vi", message key "welcome" | Message string từ file messages_vi.properties | i18n lookup |
+| TC-LOC-002 | Verify fallback to default locale khi message không có | Locale "fr", key không tồn tại | Fallback sang messages.properties | Fallback mechanism |
+
+**Tổng:** 2 test cases
+
+---
+
 ## 4. TỔNG KẾT TEST CASES THEO MODULE
 
 | Module | Test File | Số test cases | Bug Detection Tests |
 |--------|-----------|---------------|---------------------|
 | JWT Token Utils | JwtTokenUtilsTest.java | 12 | 0 |
-| Cart Service | CartServiceTest.java | 21 | 1 |
-| User Service | UserServiceTest.java | 21 | 1 |
-| Order Service | OrderServiceTest.java | 31 | 1 |
-| Product Service | ProductServiceTest.java | 23 | 1 |
-| Voucher Service | VoucherServiceTest.java | 21 | 1 |
-| Category Service | CategoryServiceTest.java | 7 | 1 |
-| Review Service | ReviewServiceTest.java | 9 | 1 |
-| Banner Service | BannerServiceTest.java | 8 | 2 |
-| Stripe Service | StripeServiceTest.java | 7 | 1 |
+| JWT Token Filter | JwtTokenFilterTest.java | 6 | 0 |
+| Cart Service | CartServiceTest.java | 26 | 1 |
+| User Service | UserServiceTest.java | 29 | 1 |
+| Order Service | OrderServiceTest.java | 40 | 1 |
+| Product Service | ProductServiceTest.java | 28 | 1 |
+| Voucher Service | VoucherServiceTest.java | 27 | 1 |
+| Category Service | CategoryServiceTest.java | 10 | 1 |
+| Review Service | ReviewServiceTest.java | 11 | 1 |
+| Banner Service | BannerServiceTest.java | 11 | 2 |
+| Stripe Service | StripeServiceTest.java | 3 | 1 |
 | VNPay Service | VnPayServiceTest.java | 5 | 3 |
 | News Service | NewsServiceTest.java | 9 | 1 |
 | Lock Feature | LockFeatureServiceTest.java | 9 | 1 |
 | Return Service | ReturnServiceTest.java | 6 | 2 |
-| **TOTAL** | **14 files** | **214** | **14** |
+| Localization Utils | LocalizationUtilsTest.java | 2 | 0 |
+| **TOTAL** | **16 files** | **234** | **14** |
 
 ---
 
@@ -428,19 +496,19 @@ mvn test jacoco:report
 [INFO]  T E S T S
 [INFO] -------------------------------------------------------
 [INFO] Running com.example.Sneakers.services.CartServiceTest
-[INFO] Tests run: 21, Failures: 1, Errors: 0, Skipped: 0
+[INFO] Tests run: 26, Failures: 1, Errors: 0, Skipped: 0
 [INFO] Running com.example.Sneakers.services.OrderServiceTest
-[INFO] Tests run: 31, Failures: 1, Errors: 0, Skipped: 0
+[INFO] Tests run: 40, Failures: 2, Errors: 0, Skipped: 0
 [INFO] Running com.example.Sneakers.services.ProductServiceTest
-[INFO] Tests run: 23, Failures: 1, Errors: 0, Skipped: 0
+[INFO] Tests run: 28, Failures: 2, Errors: 0, Skipped: 0
 [INFO] Running com.example.Sneakers.services.VoucherServiceTest
-[INFO] Tests run: 21, Failures: 1, Errors: 0, Skipped: 0
+[INFO] Tests run: 27, Failures: 2, Errors: 0, Skipped: 0
 [INFO] Running com.example.Sneakers.services.BannerServiceTest
-[INFO] Tests run: 8, Failures: 2, Errors: 0, Skipped: 0
+[INFO] Tests run: 11, Failures: 2, Errors: 0, Skipped: 0
 [INFO] Running com.example.Sneakers.services.ReviewServiceTest
-[INFO] Tests run: 9, Failures: 1, Errors: 0, Skipped: 0
+[INFO] Tests run: 11, Failures: 1, Errors: 0, Skipped: 0
 [INFO] Running com.example.Sneakers.services.StripeServiceTest
-[INFO] Tests run: 7, Failures: 1, Errors: 0, Skipped: 0
+[INFO] Tests run: 3, Failures: 1, Errors: 0, Skipped: 0
 [INFO] Running com.example.Sneakers.services.LockFeatureServiceTest
 [INFO] Tests run: 9, Failures: 1, Errors: 0, Skipped: 0
 [INFO] Running com.example.Sneakers.services.NewsServiceTest
@@ -450,19 +518,19 @@ mvn test jacoco:report
 [INFO] Running com.example.Sneakers.services.VnPayServiceTest
 [INFO] Tests run: 5, Failures: 3, Errors: 0, Skipped: 0
 [INFO] Running com.example.Sneakers.services.CategoryServiceTest
-[INFO] Tests run: 7, Failures: 1, Errors: 0, Skipped: 0
+[INFO] Tests run: 10, Failures: 3, Errors: 0, Skipped: 0
 [INFO] Running com.example.Sneakers.services.UserServiceTest
-[INFO] Tests run: 21, Failures: 1, Errors: 0, Skipped: 0
+[INFO] Tests run: 29, Failures: 1, Errors: 0, Skipped: 0
 [INFO] Running com.example.Sneakers.services.JwtTokenUtilsTest
 [INFO] Tests run: 12, Failures: 0, Errors: 0, Skipped: 0
 [INFO] Running com.example.Sneakers.filters.JwtTokenFilterTest
 [INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0
 [INFO] Running com.example.Sneakers.components.LocalizationUtilsTest
-[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0
 [INFO] -------------------------------------------------------
 [INFO] RESULTS
 [INFO] -------------------------------------------------------
-[INFO] Tests run: 214, Failures: 14, Errors: 0, Skipped: 0
+[INFO] Tests run: 234, Failures: 14, Errors: 0, Skipped: 0
 [INFO] -------------------------------------------------------
 ```
 

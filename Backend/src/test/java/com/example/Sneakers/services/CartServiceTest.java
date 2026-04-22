@@ -75,7 +75,7 @@ class CartServiceTest {
         testUser = User.builder()
                 .id(1L)
                 .phoneNumber("0123456789")
-                .fullName("Test User")
+                .fullName("Nguyen Viet Ha")
                 .build();
 
         cartItemDTO = new CartItemDTO();
@@ -742,16 +742,16 @@ class CartServiceTest {
     void TC_CART_027_deleteCart_ShouldThrowException_WhenUnauthorized_Bug() {
         // Arrange
         Long cartId = 1L;
-        // No authentication context provided - BUG: service deletes without ownership check
 
-        // Act
-        cartService.deleteCart(cartId);
+        // Act & Assert
+        Exception exception = assertThrows(Exception.class, () ->
+                cartService.deleteCart(cartId));
 
-        // Assert - BUG: Current implementation deletes cart without verifying ownership
-        // Should throw exception or require authentication
-        verify(cartRepository).deleteById(cartId);
+        assertTrue(exception.getMessage().contains("Unauthorized"));
+
+        // Đảm bảo không được phép xóa
+        verify(cartRepository, never()).deleteById(anyLong());
     }
-
     // ==================== Test Case ID: TC-CART-026 ====================
     // Test Objective: Verify that deleteCartByUserOrSession handles no auth gracefully
     // Input: null token, null sessionId
@@ -791,6 +791,67 @@ class CartServiceTest {
         // Act & Assert - Should throw exception
         Exception exception = assertThrows(Exception.class, () ->
                 cartService.createCart(invalidDTO, null, sessionId));
+        assertTrue(exception.getMessage().toLowerCase().contains("quantity") ||
+                   exception.getMessage().toLowerCase().contains("invalid") ||
+                   exception.getMessage().toLowerCase().contains("greater"));
+    }
+
+    // ==================== Test Case ID: TC-CART-021 ====================
+    // Test Objective: Verify that createCart validates quantity is not zero
+    // Input: CartItemDTO with quantity = 0
+    // Expected Output: Should throw exception, not accept zero quantity
+    // ====================
+    @Test
+    void TC_CART_021_createCart_ShouldThrowException_WhenQuantityIsZero() throws Exception {
+        // Arrange
+        CartItemDTO invalidDTO = new CartItemDTO();
+        invalidDTO.setProductId(1L);
+        invalidDTO.setQuantity(0L); // Zero quantity
+        invalidDTO.setSize(42L);
+
+        when(productRepository.findById(1L)).thenReturn(Optional.of(testProduct));
+        String sessionId = "test-session-123";
+
+        // Act & Assert - Should throw exception
+        Exception exception = assertThrows(Exception.class, () ->
+                cartService.createCart(invalidDTO, null, sessionId));
+        assertTrue(exception.getMessage().toLowerCase().contains("quantity") ||
+                   exception.getMessage().toLowerCase().contains("invalid") ||
+                   exception.getMessage().toLowerCase().contains("greater"));
+    }
+
+    // ==================== Test Case ID: TC-CART-025 ====================
+    // Test Objective: Verify that updateCart validates quantity is not zero
+    // Input: CartItemDTO with quantity = 0
+    // Expected Output: Should throw exception, not accept zero quantity
+    // ====================
+    @Test
+    void TC_CART_025_updateCart_ShouldThrowException_WhenQuantityIsZero() throws Exception {
+        // Arrange
+        Long cartId = 1L;
+        String token = "Bearer valid-token";
+
+        Cart existingCart = Cart.builder()
+                .id(cartId)
+                .product(testProduct)
+                .user(testUser)
+                .quantity(2L)
+                .size(42L)
+                .build();
+
+        CartItemDTO updateDTO = new CartItemDTO();
+        updateDTO.setProductId(1L);
+        updateDTO.setQuantity(0L); // Zero quantity
+        updateDTO.setSize(44L);
+
+        when(userService.getUserDetailsFromToken("valid-token")).thenReturn(testUser);
+        when(cartRepository.findById(cartId)).thenReturn(Optional.of(existingCart));
+        when(productRepository.findById(1L)).thenReturn(Optional.of(testProduct));
+        when(cartRepository.findByUserAndProductAndSize(testUser, testProduct, 44L)).thenReturn(Optional.empty());
+
+        // Act & Assert - Should throw exception
+        Exception exception = assertThrows(Exception.class, () ->
+                cartService.updateCart(cartId, updateDTO, token, null));
         assertTrue(exception.getMessage().toLowerCase().contains("quantity") ||
                    exception.getMessage().toLowerCase().contains("invalid") ||
                    exception.getMessage().toLowerCase().contains("greater"));

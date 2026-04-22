@@ -713,6 +713,81 @@ class VoucherServiceTest {
                    exception.getMessage().toLowerCase().contains("not be blank"));
     }
 
+    // ==================== Test Case ID: TC-VOUCH-025 ====================
+    // Test Objective: Verify that getValidVouchers returns only vouchers that are active, within date range, and have remaining quantity
+    // Input: PageRequest
+    // Expected Output: Page<Voucher> with only valid vouchers (isActive=true, within validFrom-validTo, remainingQuantity > 0)
+    // ====================
+    @Test
+    void TC_VOUCH_025_getValidVouchers_ShouldReturnOnlyValidVouchers() {
+        // Arrange
+        PageRequest pageable = PageRequest.of(0, 10);
+        LocalDateTime now = LocalDateTime.now();
+
+        Voucher validVoucher1 = Voucher.builder()
+                .id(1L)
+                .code("VALID1")
+                .isActive(true)
+                .validFrom(now.minusDays(1))
+                .validTo(now.plusDays(30))
+                .remainingQuantity(10)
+                .build();
+
+        Voucher validVoucher2 = Voucher.builder()
+                .id(2L)
+                .code("VALID2")
+                .isActive(true)
+                .validFrom(now.minusDays(2))
+                .validTo(now.plusDays(20))
+                .remainingQuantity(5)
+                .build();
+
+        Voucher expiredVoucher = Voucher.builder()
+                .id(3L)
+                .code("EXPIRED")
+                .isActive(true)
+                .validFrom(now.minusDays(30))
+                .validTo(now.minusDays(1)) // Expired
+                .remainingQuantity(10)
+                .build();
+
+        Voucher inactiveVoucher = Voucher.builder()
+                .id(4L)
+                .code("INACTIVE")
+                .isActive(false)
+                .validFrom(now.minusDays(1))
+                .validTo(now.plusDays(30))
+                .remainingQuantity(10)
+                .build();
+
+        Voucher exhaustedVoucher = Voucher.builder()
+                .id(5L)
+                .code("EXHAUSTED")
+                .isActive(true)
+                .validFrom(now.minusDays(1))
+                .validTo(now.plusDays(30))
+                .remainingQuantity(0)
+                .build();
+
+        List<Voucher> allVouchers = Arrays.asList(validVoucher1, validVoucher2, expiredVoucher, inactiveVoucher, exhaustedVoucher);
+        Page<Voucher> allVouchersPage = new PageImpl<>(allVouchers);
+
+        List<Voucher> validVouchersList = Arrays.asList(validVoucher1, validVoucher2);
+        Page<Voucher> validVouchersPage = new PageImpl<>(validVouchersList);
+
+        when(voucherRepository.findAll(pageable)).thenReturn(allVouchersPage);
+        when(voucherRepository.findValidVouchers(eq(now), eq(pageable))).thenReturn(validVouchersPage);
+
+        // Act
+        Page<Voucher> result = voucherService.getValidVouchers(pageable);
+
+        // Assert
+        assertEquals(2, result.getTotalElements());
+        assertTrue(result.getContent().stream().allMatch(v -> v.getIsActive() &&
+                v.getRemainingQuantity() > 0 &&
+                v.getValidFrom().isBefore(now) && v.getValidTo().isAfter(now)));
+    }
+
     // ==================== Test Case ID: TC-VOUCH-026 ====================
     // Test Objective: Verify that useVoucher throws exception when order not found
     // Input: Non-existent order ID

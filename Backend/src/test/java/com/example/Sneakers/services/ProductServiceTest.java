@@ -810,13 +810,13 @@ class ProductServiceTest {
         assertEquals("Cannot find category with id = " + nonExistentProductId, exception.getMessage());
     }
 
-    // ==================== Test Case ID: TC-PROD-028 ====================
+    // ==================== Test Case ID: TC-PROD-030 ====================
     // Test Objective: Verify that deleteProductImage throws exception when image not found
     // Input: Non-existent image ID
     // Expected Output: DataNotFoundException
     // ====================
     @Test
-    void TC_PROD_028_deleteProductImage_ShouldThrowException_WhenImageNotFound() throws Exception {
+    void TC_PROD_030_deleteProductImage_ShouldThrowException_WhenImageNotFound() throws Exception {
         // Arrange
         Long nonExistentImageId = 999L;
         when(productImageRepository.findById(nonExistentImageId)).thenReturn(Optional.empty());
