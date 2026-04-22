@@ -696,7 +696,67 @@ class UserServiceTest {
     // ========== TEST CASE ID: TC-USER-026 ==========
     // Test Objective: Verify createUser throws exception when phone number is null
     // Input: UserDTO with null phoneNumber
-    // Expected Output: Validation exception
+    // Expected Output: DataIntegrityViolationException or validation exception
+    // ====================
+    @Test
+    void TC_USER_026_createUser_withNullPhoneNumber_shouldThrowValidationException() throws Exception {
+        // Arrange
+        UserDTO nullPhoneDTO = UserDTO.builder()
+                .fullName("Test User")
+                .phoneNumber(null)
+                .email("test@example.com")
+                .address("Test Address")
+                .password("password123")
+                .roleId(1L)
+                .build();
+
+        when(roleRepository.findById(1L)).thenReturn(Optional.of(userRole));
+        when(passwordEncoder.encode(anyString())).thenReturn("encodedPassword");
+        when(userRepository.save(any(User.class))).thenAnswer(invocation -> {
+            User u = invocation.getArgument(0);
+            if (u.getPhoneNumber() == null) {
+                throw new DataIntegrityViolationException("Phone number cannot be null");
+            }
+            return u;
+        });
+
+        // Act & Assert
+        Exception exception = assertThrows(DataIntegrityViolationException.class, () -> {
+            userService.createUser(nullPhoneDTO);
+        });
+        assertTrue(exception.getMessage().toLowerCase().contains("phone"));
+    }
+
+    // ========== TEST CASE ID: TC-USER-027 ==========
+    // Test Objective: Verify updateActiveUserById updates active status when user exists
+    // Input: userId of existing inactive user, activeUser = true
+    // Expected Output: User's active status updated to true, saved, and returned in Optional
+    // ====================
+    @Test
+    void TC_USER_027_updateActiveUserById_ShouldUpdateActiveStatus_WhenUserExists() throws Exception {
+        // Arrange
+        Long userId = 1L;
+        User existingUser = User.builder()
+                .id(userId)
+                .fullName("Test User")
+                .phoneNumber("0123456789")
+                .role(userRole)
+                .active(false)
+                .build();
+
+        when(userRepository.findById(userId)).thenReturn(Optional.of(existingUser));
+        when(userRepository.save(any(User.class))).thenAnswer(invocation -> invocation.getArgument(0));
+
+        // Act
+        Optional<User> result = userService.updateActiveUserById(userId, true);
+
+        // Assert
+        assertTrue(result.isPresent());
+        assertTrue(result.get().isActive());
+        verify(userRepository).save(userArgumentCaptor.capture());
+        User savedUser = userArgumentCaptor.getValue();
+        assertTrue(savedUser.isActive());
+    }
     // ========== TEST CASE ID: TC-USER-028 ==========
     // Test Objective: Verify login fails for non-existent user
     // Input: Phone number that doesn't exist

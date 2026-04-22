@@ -790,6 +790,84 @@ class ProductServiceTest {
         assertEquals(50L, result.getQuantity().longValue());
     }
 
+    // ==================== Test Case ID: TC-PROD-025 ====================
+    // Test Objective: Verify that getProductsByCategory returns products for a valid category
+    // Input: Existing category ID
+    // Expected Output: ListProductResponse with products belonging to that category, including ratings and sold quantities
+    // ====================
+    @Test
+    void TC_PROD_025_getProductsByCategory_ShouldReturnProductsByCategory() throws Exception {
+        // Arrange
+        Long categoryId = 1L;
+        Category category = Category.builder().id(categoryId).name("Sneakers").build();
+
+        Product product1 = Product.builder()
+                .id(1L)
+                .name("Product 1")
+                .price(100000L)
+                .category(category)
+                .build();
+        Product product2 = Product.builder()
+                .id(2L)
+                .name("Product 2")
+                .price(200000L)
+                .category(category)
+                .build();
+
+        List<Product> products = Arrays.asList(product1, product2);
+
+        when(productRepository.getProductsByCategory(categoryId)).thenReturn(products);
+        when(reviewRepository.getAverageRatingByProductId(1L)).thenReturn(4.5);
+        when(reviewRepository.countByProductId(1L)).thenReturn(10L);
+        when(reviewRepository.getAverageRatingByProductId(2L)).thenReturn(4.0);
+        when(reviewRepository.countByProductId(2L)).thenReturn(5L);
+        when(orderDetailRepository.getTotalSoldQuantityByProductIds(Arrays.asList(1L, 2L)))
+                .thenReturn(Arrays.asList(
+                        new Object[]{1L, 50L},
+                        new Object[]{2L, 30L}
+                ));
+
+        // Act
+        ListProductResponse response = productService.getProductsByCategory(categoryId);
+
+        // Assert
+        assertEquals(2, response.getTotalProducts());
+        ProductResponse resp1 = response.getProducts().get(0);
+        assertEquals(1L, resp1.getId().longValue());
+        assertEquals(4.5, resp1.getAverageRating());
+        assertEquals(10L, resp1.getTotalReviews().longValue());
+        assertEquals(50L, resp1.getSoldQuantity().longValue());
+    }
+
+    // ==================== Test Case ID: TC-PROD-026 ====================
+    // Test Objective: Verify that updateProductThumbnail updates the thumbnail successfully
+    // Input: Valid product ID, new thumbnail URL
+    // Expected Output: Product thumbnail updated and saved
+    // ====================
+    @Test
+    void TC_PROD_026_updateProductThumbnail_ShouldUpdateThumbnail() throws Exception {
+        // Arrange
+        Long productId = 1L;
+        String newThumbnail = "new-thumbnail.jpg";
+        Product existingProduct = Product.builder()
+                .id(productId)
+                .name("Test Product")
+                .price(100000L)
+                .thumbnail("old-thumbnail.jpg")
+                .category(testCategory)
+                .build();
+
+        when(productRepository.getDetailProduct(productId)).thenReturn(Optional.of(existingProduct));
+        when(productRepository.save(any(Product.class))).thenAnswer(invocation -> invocation.getArgument(0));
+
+        // Act
+        productService.updateProductThumbnail(productId, newThumbnail);
+
+        // Assert
+        assertEquals(newThumbnail, existingProduct.getThumbnail());
+        verify(productRepository).save(existingProduct);
+    }
+
     // ==================== Test Case ID: TC-PROD-029 ====================
     // Test Objective: Verify that getRelatedProducts throws exception when product not found
     // Input: Non-existent product ID

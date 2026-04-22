@@ -775,8 +775,7 @@ class VoucherServiceTest {
         List<Voucher> validVouchersList = Arrays.asList(validVoucher1, validVoucher2);
         Page<Voucher> validVouchersPage = new PageImpl<>(validVouchersList);
 
-        when(voucherRepository.findAll(pageable)).thenReturn(allVouchersPage);
-        when(voucherRepository.findValidVouchers(eq(now), eq(pageable))).thenReturn(validVouchersPage);
+        when(voucherRepository.findValidVouchers(any(LocalDateTime.class), eq(pageable))).thenReturn(validVouchersPage);
 
         // Act
         Page<Voucher> result = voucherService.getValidVouchers(pageable);

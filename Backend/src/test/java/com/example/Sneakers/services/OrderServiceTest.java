@@ -1129,4 +1129,27 @@ class OrderServiceTest {
         assertTrue(exception.getMessage().contains("Cannot find order"));
     }
 
+    // ==================== Test Case ID: TC-ORDER-040 ====================
+    // Test Objective: Verify that findByUserId returns orders for a specific user ID
+    // Input: User ID
+    // Expected Output: List of orders belonging to that user
+    // ====================
+    @Test
+    void TC_ORDER_040_findByUserId_ShouldReturnOrdersForUserId() throws Exception {
+        // Arrange
+        Long userId = 1L;
+        Order order1 = Order.builder().id(1L).user(testUser).build();
+        Order order2 = Order.builder().id(2L).user(testUser).build();
+        List<Order> orders = List.of(order1, order2);
+
+        when(orderRepository.findByUserId(userId)).thenReturn(orders);
+
+        // Act
+        List<Order> result = orderService.findByUserId(userId);
+
+        // Assert
+        assertEquals(2, result.size());
+        verify(orderRepository).findByUserId(userId);
+    }
+
 }
