@@ -1,28 +1,100 @@
+server:
+  port: 8089
 spring:
   datasource:
-    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
-    driver-class-name: org.h2.Driver
-    username: sa
-    password: password
+    url: jdbc:mysql://localhost:3306/lockerkorea_test?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: lockerkorea123
   jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
+    show-sql: true
     hibernate:
-      ddl-auto: create-drop
-    show-sql: false
+      ddl-auto: update
     properties:
       hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
         format_sql: true
-  sql:
-    init:
-      mode: always
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+  messages:
+    basename: i18n/messages
+    encoding: UTF-8
+    default-locate: en
+  google:
+    ai:
+      project-id: evident-trees-484415-p4 # Replace with your Google Cloud project ID
+      location: us-central1
+      model: gemini-2.5-flash
+  autoconfigure:
+    exclude:
+      - org.springframework.ai.autoconfigure.vectorstore.chroma.ChromaVectorStoreAutoConfiguration
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: "leonelpessiu2810@gmail.com"
+    password: "xxtb czbm rxyv mrax"
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+api:
+  prefix: /api/v1
+jwt:
+  expiration: 2592000
+  secretKey: U0roD0fdqXHh6yEzmYciXkhmHlFsS7v2Xa3bLVPsyLQ=
 
+logging.level.org.springframework.security: DEBUG
+
+# Logging Configuration
 logging:
   level:
-    com.example.Sneakers: DEBUG
-    org.springframework.test: DEBUG
-    org.hibernate.SQL: DEBUG
-    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+    com.example.Sneakers.controllers.VnpayController: DEBUG
+    com.example.Sneakers.services.VnPayService: DEBUG
+    org.springframework.security: DEBUG
+  file:
+    name: logs/sneakers-app.log
+  pattern:
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+    console: "%d{HH:mm:ss} %-5level %logger{36} - %msg%n"
 
-jwt:
-  secretKey: testSecretKeyForUnitTestingOnly1234567890
-  expiration: 2592000
+# Chroma Vector Database Configuration
+chroma:
+  collection:
+    name: sneakers-collection
+  base:
+    url: ${CHROMA_BASE_URL:http://localhost:8000}
+
+# AI Features Configuration
+ai:
+  enabled: false # Set to true when Google Cloud is configured
+  embedding:
+    base-url: http://localhost:9001
+# Stripe Configuration (Test Mode)
+stripe:
+  api:
+    secret-key: sk_test_MASKED_SECRET_KEY
+    publishable-key: pk_test_51RYEK0RoKh7pvaZeTzq1TjxJXE4Rfr5xwKIP6uL1kJDET3mb78shODbWhYyL1znUhqyanmoPV18g8zGCTkDUuok6003ObawJA1
+
+# VNPAY Configuration (Test Mode)
+payment:
+  vnpay:
+    tmnCode: "JHQEESRJ" # Replace with your TmnCode
+    hashSecret: "075M0OLSGSFKL8BEIT81CFM9WGATXYCA" # Replace with your HashSecret
+    url: "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html"
+    returnUrl: "http://localhost:8089/api/v1/vnpay/payment-callback"
+
+ghn:
+  api:
+    token: "dce052f9-d73a-11f0-a3d6-dac90fb956b5" # Replace with your GHN Token
+    shop-id: "198428" # Replace with your GHN Shop ID
+    url: "https://dev-online-gateway.ghn.vn/shiip/public-api/v2/shipping-order/create"
+    from-district-id: 3440
+    from-ward-code: "13006"
+
+facebook:
+  page-id: "945215165331759"
+  access-token: "EAARHvtQgLDQBQOKVkn7ynuo6ZCNPocDxzFA3N5igRpLdq45k9Iw9A6Ytbss76UWpb9ZAW1JLvCAFsU3l2t0ogZCNdNzsbu9CCQEF74Dy5FGZBJ3DJXZCNmzMaWTcEgpM1P4daMsNUbAG8NBAHZAH0xmQAO64ZBoORN6KjoL9o1KbC15SCkjMZBTjZAf0es8IENo5PesunKN1A"

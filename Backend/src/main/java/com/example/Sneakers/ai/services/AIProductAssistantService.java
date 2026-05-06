@@ -15,10 +15,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 
 @Service
 @RequiredArgsConstructor
 @Slf4j
+@ConditionalOnProperty(name = "ai.enabled", havingValue = "true")
 public class AIProductAssistantService {
 
     private final ChatModel geminiChatModel;

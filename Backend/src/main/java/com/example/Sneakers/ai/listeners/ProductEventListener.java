@@ -8,9 +8,11 @@ import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.event.TransactionPhase;
 import org.springframework.transaction.event.TransactionalEventListener;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 
 @Component
 @Slf4j
+@ConditionalOnProperty(name = "ai.enabled", havingValue = "true")
 public class ProductEventListener {
 
     private VectorSearchService vectorSearchService;

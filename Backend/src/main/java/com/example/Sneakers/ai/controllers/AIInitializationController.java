@@ -10,12 +10,14 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 
 @RestController
 @RequestMapping("${api.prefix}/ai/initialize")
 @CrossOrigin(origins = "*")
 @RequiredArgsConstructor
 @Slf4j
+@ConditionalOnProperty(name = "ai.enabled", havingValue = "true")
 public class AIInitializationController {
 
     private final VectorSearchService vectorSearchService;

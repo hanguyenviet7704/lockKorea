@@ -175,21 +175,12 @@ public class ProductController {
             Path currentDir = Paths.get(userDir).toAbsolutePath();
             Path backendRoot = currentDir;
             
-            // Auto-detect Backend folder: if current dir is project root, go to Backend
-            // Check if uploads folder exists in current directory, if not, check parent/Backend
-            Path uploadsInCurrent = currentDir.resolve("uploads");
-            if (!Files.exists(uploadsInCurrent)) {
-                // Try going to Backend folder
-                Path backendDir = currentDir.resolve("Backend");
-                if (Files.exists(backendDir.resolve("uploads"))) {
-                    backendRoot = backendDir;
-                } else if (currentDir.getParent() != null) {
-                    // Maybe running from Backend folder, check if uploads exists
-                    Path parentBackend = currentDir.getParent().resolve("Backend");
-                    if (Files.exists(parentBackend.resolve("uploads"))) {
-                        backendRoot = parentBackend;
-                    }
-                }
+            // Auto-detect Backend folder
+            Path backendDir = currentDir.resolve("Backend");
+            if (Files.exists(backendDir) && Files.isDirectory(backendDir)) {
+                backendRoot = backendDir;
+            } else if (currentDir.getFileName().toString().equals("Backend")) {
+                backendRoot = currentDir;
             }
             
             logger.info("Loading image: original={}, clean={}, backendRoot={}, currentDir={}", 

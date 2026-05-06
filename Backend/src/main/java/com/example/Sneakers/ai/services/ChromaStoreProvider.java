@@ -10,9 +10,11 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.concurrent.atomic.AtomicReference;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 
 @Service
 @Slf4j
+@ConditionalOnProperty(name = "ai.enabled", havingValue = "true")
 public class ChromaStoreProvider {
 
     @Value("${chroma.collection.name:sneakers-collection}")

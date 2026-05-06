@@ -3,6 +3,7 @@ package com.lockerkorea.ui.tests.admin;
 import com.lockerkorea.ui.pages.*;
 import com.lockerkorea.ui.utils.BaseTest;
 import com.lockerkorea.ui.utils.ConfigReader;
+import com.lockerkorea.ui.utils.DBConnector;
 import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -16,18 +17,27 @@ public class AdminProductTest extends BaseTest {
 
     private LoginPage loginPage;
     private ProductManagePage productManagePage;
+    private DBConnector dbConnector;
 
     @BeforeEach
     public void setUpAdmin() {
         loginPage = new LoginPage(driver);
         productManagePage = new ProductManagePage(driver);
-        
+        dbConnector = new DBConnector();
+
         loginPage.navigateTo();
         loginPage.login(
             ConfigReader.getString("test.admin.email"),
             ConfigReader.getString("test.admin.password")
         );
         productManagePage.navigateTo();
+    }
+
+    @AfterEach
+    public void tearDownDB() {
+        if (dbConnector != null) {
+            dbConnector.disconnect();
+        }
     }
 
     // =========================================================================
@@ -47,18 +57,22 @@ public class AdminProductTest extends BaseTest {
     @Order(2)
     @DisplayName("TC-QLSP-7,8,9: Search Functionality")
     void testSearchProducts() {
-        // Hợp lệ
+        // Valid search
         productManagePage.searchProduct("Khóa Samsung");
-        assertTrue(productManagePage.getProductCountInTable() >= 0, "Should handle valid search");
+        try { Thread.sleep(2000); } catch (InterruptedException e) { Thread.currentThread().interrupt(); }
+        int resultCount = productManagePage.getProductCountInTable();
+        assertTrue(resultCount >= 0, "Should handle valid search");
 
-        // Xóa bộ lọc tìm kiếm
+        // Clear filter
         productManagePage.searchProduct("");
-        
-        // Không hợp lệ
+        try { Thread.sleep(1500); } catch (InterruptedException e) { Thread.currentThread().interrupt(); }
+
+        // Invalid keyword - should return 0
         productManagePage.searchProduct("xyzxyz999");
+        try { Thread.sleep(2000); } catch (InterruptedException e) { Thread.currentThread().interrupt(); }
         assertEquals(0, productManagePage.getProductCountInTable(), "Should return 0 results for xyzxyz999");
-        
-        // Trả lại trạng thái ban đầu
+
+        // Reset
         productManagePage.searchProduct("");
     }
 
@@ -67,6 +81,7 @@ public class AdminProductTest extends BaseTest {
     @DisplayName("TC-QLSP-9.1: Search Functionality - Ký tự đặc biệt")
     void testSearchProductsSpecialChars() {
         productManagePage.searchProduct("@#$%^&*");
+        try { Thread.sleep(2000); } catch (InterruptedException e) { Thread.currentThread().interrupt(); }
         assertEquals(0, productManagePage.getProductCountInTable(), "Should return 0 results for special characters if no match");
         productManagePage.searchProduct("");
     }

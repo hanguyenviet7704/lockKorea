@@ -159,17 +159,66 @@ public class BannerController {
     /**
      * Serve banner image
      */
-    @GetMapping("/images/{imageName}")
+    @GetMapping("/images/{imageName:.+}")
     public ResponseEntity<?> viewBannerImage(@PathVariable String imageName) {
         try {
-            Path imagePath = Paths.get("uploads").resolve(imageName);
-            if (!Files.exists(imagePath)) {
-                return ResponseEntity.notFound().build();
+            // URL decode the image name
+            String decodedImageName = java.net.URLDecoder.decode(imageName, java.nio.charset.StandardCharsets.UTF_8);
+            
+            String cleanImageName = decodedImageName;
+            if (decodedImageName.contains("/")) {
+                cleanImageName = decodedImageName.substring(decodedImageName.lastIndexOf("/") + 1);
             }
-            UrlResource resource = new UrlResource(imagePath.toUri());
-            return ResponseEntity.ok()
-                    .contentType(MediaType.IMAGE_JPEG)
-                    .body(resource);
+            
+            String userDir = System.getProperty("user.dir");
+            Path currentDir = Paths.get(userDir).toAbsolutePath();
+            Path backendRoot = currentDir;
+            
+            Path uploadsInCurrent = currentDir.resolve("uploads");
+            if (!Files.exists(uploadsInCurrent)) {
+                Path backendDir = currentDir.resolve("Backend");
+                if (Files.exists(backendDir.resolve("uploads"))) {
+                    backendRoot = backendDir;
+                } else if (currentDir.getParent() != null) {
+                    Path parentBackend = currentDir.getParent().resolve("Backend");
+                    if (Files.exists(parentBackend.resolve("uploads"))) {
+                        backendRoot = parentBackend;
+                    }
+                }
+            }
+            
+            Path[] possiblePaths = {
+                backendRoot.resolve("uploads").resolve(cleanImageName),
+                currentDir.resolve("uploads").resolve(cleanImageName),
+                Paths.get("uploads").resolve(cleanImageName).toAbsolutePath()
+            };
+            
+            for (Path imagePath : possiblePaths) {
+                try {
+                    Path absolutePath = imagePath.toAbsolutePath();
+                    if (Files.exists(absolutePath) && Files.isReadable(absolutePath)) {
+                        UrlResource resource = new UrlResource(absolutePath.toUri());
+                        return ResponseEntity.ok()
+                                .contentType(MediaType.IMAGE_JPEG)
+                                .body(resource);
+                    }
+                } catch (Exception e) {
+                    continue;
+                }
+            }
+            
+            Path notFoundPath = backendRoot.resolve("uploads").resolve("notfound.jpg");
+            if (!Files.exists(notFoundPath)) {
+                notFoundPath = Paths.get("uploads/notfound.jpg");
+            }
+            
+            if (Files.exists(notFoundPath)) {
+                return ResponseEntity.ok()
+                        .contentType(MediaType.IMAGE_JPEG)
+                        .body(new UrlResource(notFoundPath.toAbsolutePath().toUri()));
+            }
+            
+            return ResponseEntity.notFound().build();
         } catch (Exception e) {
             logger.error("Error loading banner image: ", e);
             return ResponseEntity.notFound().build();

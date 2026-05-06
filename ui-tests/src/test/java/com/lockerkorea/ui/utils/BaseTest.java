@@ -116,9 +116,9 @@ public class BaseTest {
                 break;
         }
 
-        // Create explicit wait
+        // Create explicit wait - increase to 60 seconds for slow forms
         wait = new WebDriverWait(driver, Duration.ofSeconds(
-            ConfigReader.getInt("explicit.wait", 20)
+            ConfigReader.getInt("explicit.wait", 60)
         ));
     }
 

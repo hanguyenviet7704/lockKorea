@@ -20,12 +20,14 @@ import com.example.Sneakers.dtos.DashboardStatsDTO;
 import com.example.Sneakers.dtos.DailyRevenueDTO;
 import com.example.Sneakers.dtos.ProductSoldStatisticsDTO;
 import java.time.LocalDate;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 
 @RestController
 @RequestMapping("${api.prefix}/ai/chat")
 @CrossOrigin(origins = "*")
 @RequiredArgsConstructor
 @Slf4j
+@ConditionalOnProperty(name = "ai.enabled", havingValue = "true")
 public class AIChatController {
 
     private final ChatModel geminiChatModel;
